@@ -1,0 +1,70 @@
+productTag: Salesforce User Sync
+isArchivable: true
+operations:
+  read:
+    abilities: ADMIN_USERS_VIEW
+  query:
+    abilities: ADMIN_USERS_VIEW
+  export:
+    abilities: ADMIN_USERS_VIEW
+    featureFlags: feature.api.version_5_export_all
+doctrineQueryModifier: \Api\Config\Objects\User\UserDoctrineQueryModifier
+fields:
+  id:
+    type: integer
+    sortable: true
+    filterable: true
+    readOnly: true
+  email:
+    type: string
+    filterable: true
+  firstName:
+    type: string
+  lastName:
+    type: string
+  username:
+    type: string
+    derived: true
+    readOnly: true
+  jobTitle:
+    type: string
+  role:
+    type: string
+  salesforceId:
+    type: string
+    doctrineField: crm_user_fid
+    readOnly: true
+  createdAt:
+    type: datetime
+    readOnly: true
+    sortable: true
+    filterable: true
+  updatedAt:
+    type: datetime
+    readOnly: true
+    sortable: true
+    filterable: true
+  isDeleted:
+    type: boolean
+    doctrineField: is_archived
+    preVersion5Field: is_archived
+    readOnly: true
+  createdById:
+    type: integer
+    doctrineField: created_by
+    readOnly: true
+  updatedById:
+    type: integer
+    doctrineField: updated_by
+    readOnly: true
+relationships:
+  createdBy:
+    doctrineName: piCreated
+    referenceTo:
+      object: User
+      key: id
+  updatedBy:
+    doctrineName: piUpdated
+    referenceTo:
+      object: User
+      key: id

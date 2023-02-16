@@ -1,0 +1,160 @@
+properties:
+  name:
+    type: string
+  arguments:
+    $oneOf:
+      Email/FilterByUpdatedAt:
+        representation: EmailFilterByUpdatedAtRepresentation
+      ExternalActivity/FilterByActivityDate:
+        representation: ExternalActivityFilterByActivityDateRepresentation
+      ExternalActivity/FilterByCreatedAt:
+        representation: ExternalActivityFilterByCreatedAtRepresentation
+      LifecycleStageProspect/FilterByProspectUpdatedAt:
+        representation: LifecycleStageProspectFilterByProspectUpdatedAtRepresentation
+      LifecycleStageProspect/FilterByUpdatedAt:
+        representation: LifecycleStageProspectFilterByUpdatedAtRepresentation
+      ListMembership/FilterByCreatedAt:
+        representation: ListMembershipFilterByCreatedAtRepresentation
+      ListMembership/FilterByUpdatedAt:
+        representation: ListMembershipFilterByUpdatedAtRepresentation
+      Prospect/FilterByCreatedAt:
+        representation: ProspectFilterByCreatedAtRepresentation
+      Prospect/FilterByLastActivity:
+        representation: ProspectFilterByLastActivityRepresentation
+      Prospect/FilterByUpdatedAt:
+        representation: ProspectFilterByUpdatedAtRepresentation
+      ProspectAccount/FilterByProspectUpdatedAt:
+        representation: ProspectAccountFilterByProspectUpdatedAtRepresentation
+      ProspectAccount/FilterByUpdatedAt:
+        representation: ProspectAccountFilterByUpdatedAtRepresentation
+      TaggedObject/FilterByProspectUpdatedAt:
+        representation: TaggedObjectFilterByProspectUpdatedAtRepresentation
+      TaggedObject/FilterByUpdatedAt:
+        representation: TaggedObjectFilterByUpdatedAtRepresentation
+      Visitor/FilterByProspectUpdatedAt:
+        representation: VisitorFilterByProspectUpdatedAtRepresentation
+      Visitor/FilterByUpdatedAt:
+        representation: VisitorFilterByUpdatedAtRepresentation
+      VisitorActivity/FilterByCreatedAt:
+        representation: VisitorActivityFilterByCreatedAtRepresentation
+      VisitorActivity/FilterByUpdatedAt:
+        representation: VisitorActivityFilterByUpdatedAtRepresentation
+        #------  Generic procedures ---------
+      Campaign/FilterByCreatedAt:
+        representation: ExportProcedureFilterByCreatedAtRepresentation
+      Campaign/FilterByUpdatedAt:
+        representation: ExportProcedureFilterByUpdatedAtRepresentation
+      CustomField/FilterByCreatedAt:
+        representation: ExportProcedureFilterByCreatedAtRepresentation
+      CustomField/FilterByUpdatedAt:
+        representation: ExportProcedureFilterByUpdatedAtRepresentation
+      CustomRedirect/FilterByCreatedAt:
+        representation: ExportProcedureFilterByCreatedAtRepresentation
+      CustomRedirect/FilterByUpdatedAt:
+        representation: ExportProcedureFilterByUpdatedAtRepresentation
+      DynamicContent/FilterByCreatedAt:
+        representation: ExportProcedureFilterByCreatedAtRepresentation
+      DynamicContent/FilterByUpdatedAt:
+        representation: ExportProcedureFilterByUpdatedAtRepresentation
+      DynamicContentVariation/FilterByCreatedAt:
+        representation: ExportProcedureFilterByCreatedAtRepresentation
+      DynamicContentVariation/FilterByUpdatedAt:
+        representation: ExportProcedureFilterByUpdatedAtRepresentation
+      Email/FilterByCreatedAt:
+        representation: ExportProcedureFilterByCreatedAtRepresentation
+      EmailTemplate/FilterByCreatedAt:
+        representation: ExportProcedureFilterByCreatedAtRepresentation
+      EmailTemplate/FilterByUpdatedAt:
+        representation: ExportProcedureFilterByUpdatedAtRepresentation
+      EngagementProgram/FilterByCreatedAt:
+        representation: ExportProcedureFilterByCreatedAtRepresentation
+      EngagementProgram/FilterByUpdatedAt:
+        representation: ExportProcedureFilterByUpdatedAtRepresentation
+      Export/FilterByCreatedAt:
+        representation: ExportProcedureFilterByCreatedAtRepresentation
+      Export/FilterByUpdatedAt:
+        representation: ExportProcedureFilterByUpdatedAtRepresentation
+      ExternalActivity/FilterByUpdatedAt:
+        representation: ExportProcedureFilterByUpdatedAtRepresentation
+      File/FilterByCreatedAt:
+        representation: ExportProcedureFilterByCreatedAtRepresentation
+      File/FilterByUpdatedAt:
+        representation: ExportProcedureFilterByUpdatedAtRepresentation
+      Folder/FilterByCreatedAt:
+        representation: ExportProcedureFilterByCreatedAtRepresentation
+      Folder/FilterByUpdatedAt:
+        representation: ExportProcedureFilterByUpdatedAtRepresentation
+      Form/FilterByCreatedAt:
+        representation: ExportProcedureFilterByCreatedAtRepresentation
+      Form/FilterByUpdatedAt:
+        representation: ExportProcedureFilterByUpdatedAtRepresentation
+      FormHandler/FilterByCreatedAt:
+        representation: ExportProcedureFilterByCreatedAtRepresentation
+      FormHandler/FilterByUpdatedAt:
+        representation: ExportProcedureFilterByUpdatedAtRepresentation
+      FormHandlerField/FilterByCreatedAt:
+        representation: ExportProcedureFilterByCreatedAtRepresentation
+      FormHandlerField/FilterByUpdatedAt:
+        representation: ExportProcedureFilterByUpdatedAtRepresentation
+      Import/FilterByCreatedAt:
+        representation: ExportProcedureFilterByCreatedAtRepresentation
+      Import/FilterByUpdatedAt:
+        representation: ExportProcedureFilterByUpdatedAtRepresentation
+      LandingPage/FilterByCreatedAt:
+        representation: ExportProcedureFilterByCreatedAtRepresentation
+      LandingPage/FilterByUpdatedAt:
+        representation: ExportProcedureFilterByUpdatedAtRepresentation
+      LayoutTemplate/FilterByCreatedAt:
+        representation: ExportProcedureFilterByCreatedAtRepresentation
+      LayoutTemplate/FilterByUpdatedAt:
+        representation: ExportProcedureFilterByUpdatedAtRepresentation
+      LifecycleHistory/FilterByCreatedAt:
+        representation: ExportProcedureFilterByCreatedAtRepresentation
+      LifecycleHistory/FilterByUpdatedAt:
+        representation: ExportProcedureFilterByUpdatedAtRepresentation
+      LifecycleStage/FilterByCreatedAt:
+        representation: ExportProcedureFilterByCreatedAtRepresentation
+      LifecycleStage/FilterByUpdatedAt:
+        representation: ExportProcedureFilterByUpdatedAtRepresentation
+      LifecycleStageProspect/FilterByCreatedAt:
+        representation: ExportProcedureFilterByCreatedAtRepresentation
+      List/FilterByCreatedAt:
+        representation: ExportProcedureFilterByCreatedAtRepresentation
+      List/FilterByUpdatedAt:
+        representation: ExportProcedureFilterByUpdatedAtRepresentation
+      ListEmail/FilterByCreatedAt:
+        representation: ExportProcedureFilterByCreatedAtRepresentation
+      ListEmail/FilterByUpdatedAt:
+        representation: ExportProcedureFilterByUpdatedAtRepresentation
+      Opportunity/FilterByCreatedAt:
+        representation: ExportProcedureFilterByCreatedAtRepresentation
+      Opportunity/FilterByUpdatedAt:
+        representation: ExportProcedureFilterByUpdatedAtRepresentation
+      ProspectAccount/FilterByCreatedAt:
+        representation: ExportProcedureFilterByCreatedAtRepresentation
+      TrackerDomain/FilterByCreatedAt:
+        representation: ExportProcedureFilterByCreatedAtRepresentation
+      TrackerDomain/FilterByUpdatedAt:
+        representation: ExportProcedureFilterByUpdatedAtRepresentation
+      User/FilterByCreatedAt:
+        representation: ExportProcedureFilterByCreatedAtRepresentation
+      User/FilterByUpdatedAt:
+        representation: ExportProcedureFilterByUpdatedAtRepresentation
+      Visit/FilterByCreatedAt:
+        representation: ExportProcedureFilterByCreatedAtRepresentation
+      Visit/FilterByUpdatedAt:
+        representation: ExportProcedureFilterByUpdatedAtRepresentation
+      Visitor/FilterByCreatedAt:
+        representation: ExportProcedureFilterByCreatedAtRepresentation
+      VisitorPageView/FilterByCreatedAt:
+        representation: ExportProcedureFilterByCreatedAtRepresentation
+      VisitorPageView/FilterByUpdatedAt:
+        representation: ExportProcedureFilterByUpdatedAtRepresentation
+    discriminatorException:
+      type: \Api\Exceptions\ApiException
+      parameters:
+        - \ApiErrorLibrary::API_ERROR_INVALID_PROCEDURE_NAME
+        - ""
+        - \RESTClient::HTTP_BAD_REQUEST
+    discriminator: name
+

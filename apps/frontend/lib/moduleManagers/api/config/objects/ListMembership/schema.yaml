@@ -1,0 +1,100 @@
+productTag: Prospect Lists
+isArchivable: true
+doctrineTable: piListxProspectTable
+operations:
+  read:
+    abilities:
+      $allOf:
+        - MARKETING_SEGMENTATION_LISTS_VIEW
+        - PROSPECTS_PROSPECTS_VIEW #see ListMembershipDoctrineQueryModifier for additional abilities
+  query:
+    abilities:
+      $allOf:
+        - MARKETING_SEGMENTATION_LISTS_VIEW
+        - PROSPECTS_PROSPECTS_VIEW #see ListMembershipDoctrineQueryModifier for additional abilities
+  delete:
+    abilities:
+      $allOf:
+        - MARKETING_SEGMENTATION_LISTS_DELETE
+        - PROSPECTS_PROSPECTS_DELETE
+  create:
+    abilities:
+      $allOf:
+        - MARKETING_SEGMENTATION_LISTS_CREATE
+        - PROSPECTS_PROSPECTS_CREATE
+  export:
+    abilities:
+      $allOf:
+        - MARKETING_SEGMENTATION_LISTS_VIEW
+        - PROSPECTS_PROSPECTS_VIEW
+  update:
+    abilities:
+      $allOf:
+        - MARKETING_SEGMENTATION_LISTS_CREATE
+        - PROSPECTS_PROSPECTS_CREATE
+doctrineQueryModifier: \Api\Config\Objects\ListMembership\ListMembershipDoctrineQueryModifier
+doctrineCreateModifier: \Api\Config\Objects\ListMembership\ListMembershipDoctrineCreateModifier
+doctrineUpdateModifier: \Api\Config\Objects\ListMembership\ListMembershipDoctrineUpdateModifier
+doctrineDeleteModifier: \Api\Config\Objects\ListMembership\ListMembershipDoctrineDeleteModifier
+fields:
+  id:
+    type: integer
+    sortable: true
+    filterable: true
+    readOnly: true
+  listId:
+    type: integer
+    doctrineField: listx_id
+    sortable: true # ix_getprospectcount (account_id, listx_id, is_archived)
+    filterable: true
+  prospectId:
+    type: integer
+    filterable: true # listx_prospect_FI_3 (prospect_id)
+    filterableByRange: false
+  optedOut:
+    type: boolean
+    doctrineField: did_opt_out
+  createdAt:
+    type: datetime
+    sortable: true # ix_acc_created (account_id, created_at)
+    readOnly: true
+    filterable: true
+  updatedAt:
+    type: datetime
+    sortable: true # ix_acc_updated (account_id, updated_at)
+    readOnly: true
+    filterable: true
+  createdById:
+    type: integer
+    doctrineField: created_by
+    readOnly: true
+  updatedById:
+    type: integer
+    doctrineField: updated_by
+    readOnly: true
+  isDeleted:
+    type: boolean
+    doctrineField: is_archived
+    readOnly: true
+    preVersion5Field: is_archived
+relationships:
+  list:
+    doctrineName: piListx
+    referenceTo:
+      object: List
+      key: id
+  prospect:
+    doctrineName: piProspect
+    referenceTo:
+      object: Prospect
+      key: id
+  createdBy:
+    doctrineName: piCreated
+    referenceTo:
+      object: User
+      key: id
+  updatedBy:
+    doctrineName: piUpdated
+    referenceTo:
+      object: User
+      key: id

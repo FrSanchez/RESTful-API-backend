@@ -1,0 +1,64 @@
+productTag: PARDOT_PBS
+doctrineTable: piConnectorTable
+isArchivable: true
+isSingleton: true
+customUrlPath: /api/{version}/connectors/salesforce
+operations:
+  read:
+    abilities:
+      $allOf:
+        - ADMIN_CONNECTORS_VIEW
+    featureFlags: feature.api.enable_v5_salesforce_connector_api
+fields:
+  name:
+    type: string
+    required: true
+  accountId:
+    type: integer
+    required: true
+  isPaused:
+    type: boolean
+    derived: true
+  isVerified:
+    type: boolean
+    readOnly: true
+    doctrineField: is_verified
+    preVersion5Field: is_verified
+  isDeleted:
+    type: boolean
+    readOnly: true
+    doctrineField: is_archived
+    preVersion5Field: is_archived
+  lastSyncedAt:
+    type: datetime
+    readOnly: true
+    doctrineField: last_synced_at
+  lastSyncedMetadataAt:
+    type: datetime
+    readOnly: true
+    doctrineField: last_synced_metadata_at
+  createdById:
+    type: integer
+    doctrineField: created_by
+    readOnly: true
+  updatedById:
+    type: integer
+    doctrineField: updated_by
+    readOnly: true
+  createdAt:
+    type: datetime
+    readOnly: true
+  updatedAt:
+    type: datetime
+    readOnly: true
+relationships:
+  createdBy:
+    doctrineName: piCreated
+    referenceTo:
+      object: User
+      key: id
+  updatedBy:
+    doctrineName: piUpdated
+    referenceTo:
+      object: User
+      key: id

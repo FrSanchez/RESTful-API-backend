@@ -1,0 +1,9 @@
+# sample polymorphic representation
+suppressDescriptors: true
+properties:
+  createdAfter:
+    type: datetime
+  createdBefore:
+    type: datetime
+  deleted:
+    type: string

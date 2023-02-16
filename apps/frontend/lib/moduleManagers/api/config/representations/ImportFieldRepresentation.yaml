@@ -1,0 +1,5 @@
+properties:
+  overwrite:
+    type: boolean
+  nullOverwrite:
+    type: boolean

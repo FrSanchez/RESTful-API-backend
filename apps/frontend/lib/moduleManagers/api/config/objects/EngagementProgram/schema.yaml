@@ -1,0 +1,94 @@
+doctrineTable: piWorkflowTable
+productTag: ENGAGEMENT_STUDIO_BACKEND
+isArchivable: true
+doctrineQueryModifier: \Api\Config\Objects\EngagementProgram\EngagementProgramDoctrineQueryModifier
+operations:
+  read:
+    abilities: MARKETING_ENGAGEMENTSTUDIO_ENGAGEMENTPROGRAM_VIEW
+    featureFlags: feature.api.enable_v5_engagement_program_api
+  query:
+    abilities: MARKETING_ENGAGEMENTSTUDIO_ENGAGEMENTPROGRAM_VIEW
+    featureFlags: feature.api.enable_v5_engagement_program_api
+fields:
+  id:
+    type: integer
+    sortable: true
+    filterable: true
+    readOnly: true
+  name:
+    type: string
+    required: true
+  status:
+    type: enum
+    readOnly: true
+    enumFieldClass: \Api\Config\Objects\EngagementProgram\EngagementProgramStatusTypeEnum
+  isDeleted:
+    type: boolean
+    doctrineField: is_archived
+    readOnly: true
+  createdAt:
+    type: datetime
+    readOnly: true
+    filterable: true
+    sortable: true
+  createdById:
+    type: integer
+    doctrineField: created_by
+    readOnly: true
+  updatedAt:
+    type: datetime
+    readOnly: true
+    filterable: true
+    sortable: true
+  updatedById:
+    type: integer
+    doctrineField: updated_by
+    readOnly: true
+  salesforceId:
+    type: integer
+    doctrineField: crm_id
+    readOnly: true
+  description:
+    type: string
+  folderId: # folder_object
+    type: integer
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\FolderBulkDataProcessor
+
+# fields from workflow_metadata
+  timezone:
+    type: string
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\EngagementProgramWorkflowMetadataBulkDataProcessor
+  businessHours:
+    type: EngagementProgramBusinessHoursRepresentation
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\EngagementProgramWorkflowMetadataBulkDataProcessor
+  prospectsMultipleEntry:
+    type: EngagementProgramLoopingMetadataRepresentation
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\EngagementProgramWorkflowMetadataBulkDataProcessor
+
+# fields from workflow_source
+  sourceListIds:
+    type: array
+    items: integer
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\EngagementProgramWorkflowSourceBulkDataProcessor
+  suppressionListIds:
+    type: array
+    items: integer
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\EngagementProgramWorkflowSourceBulkDataProcessor
+
+
+relationships:
+  createdBy:
+    doctrineName: piCreatedByUser
+    referenceTo:
+      object: User
+      key: id
+  updatedBy:
+    doctrineName: piUpdatedByUser
+    referenceTo:
+      object: User
+      key: id
+  folder:
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\FolderBulkDataProcessor
+    referenceTo:
+      object: Folder
+      key: id

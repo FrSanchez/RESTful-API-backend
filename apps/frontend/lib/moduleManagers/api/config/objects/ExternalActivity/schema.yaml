@@ -1,0 +1,52 @@
+productTag: EXTERNAL_ACTIVITIES
+isArchivable: false
+operations:
+  read:
+    abilities: PROSPECTS_EXTERNAL_ACTIVITY_VIEW
+  query:
+    abilities: PROSPECTS_EXTERNAL_ACTIVITY_VIEW
+  export:
+    abilities:
+      $allOf:
+        - PROSPECTS_EXTERNAL_ACTIVITY_VIEW
+fields:
+  id:
+    type: integer
+    readOnly: true
+    filterable: true
+    sortable: true
+  extension:
+    type: string
+    readOnly: true
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\ExternalActivityBulkDataProcessor
+  extensionSalesforceId:
+    type: string
+    readOnly: true
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\ExternalActivityBulkDataProcessor
+  type:
+    type: string
+    readOnly: true
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\ExternalActivityBulkDataProcessor
+  typeSalesforceId:
+    type: string
+    doctrineField: external_activity_type_fid
+    readOnly: true
+  prospectId:
+    type: integer
+    derived: true
+    readOnly: true
+  value:
+    type: string
+    readOnly: true
+  activityDate:
+    type: datetime
+    readOnly: true
+    filterable: true
+  createdAt:
+    type: datetime
+    readOnly: true
+    filterable: true
+  createdById:
+    type: integer
+    doctrineField: created_by
+    readOnly: true

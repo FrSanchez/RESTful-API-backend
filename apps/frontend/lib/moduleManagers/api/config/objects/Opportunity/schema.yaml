@@ -1,0 +1,77 @@
+isArchivable: true
+productTag: Prospect Opportunity
+doctrineQueryModifier: \Api\Config\Objects\Opportunity\OpportunityDoctrineQueryModifier
+operations:
+  read:
+    abilities: PROSPECTS_OPPS_VIEW
+  query:
+    abilities: PROSPECTS_OPPS_VIEW
+  export:
+    abilities:
+      $allOf:
+        - PROSPECTS_OPPS_EXPORT
+        - PROSPECTS_OPPS_VIEW
+    featureFlags: feature.api.version_5_export_all
+fields:
+  id:
+    type: integer
+    readOnly: true
+    sortable: true
+    filterable: true
+  campaignId:
+    type: integer
+  name:
+    type: string
+  value:
+    type: float
+  probability:
+    type: integer
+  salesforceId:
+    type: string
+    doctrineField: crm_opportunity_fid
+    readOnly: true
+  type:
+    type: string
+  stage:
+    type: string
+  status:
+    type: string
+    derived: true
+  closedAt:
+    type: datetime
+    filterable: true
+    sortable: true
+    nullable: true
+  createdAt:
+    type: datetime
+    readOnly: true
+    filterable: true
+    sortable: true
+  updatedAt:
+    type: datetime
+    readOnly: true
+    filterable: true
+    sortable: true
+  createdById:
+    type: integer
+    doctrineField: created_by
+    readOnly: true
+  updatedById:
+    type: integer
+    doctrineField: updated_by
+    readOnly: true
+relationships:
+  updatedBy:
+    doctrineName: piUpdated
+    referenceTo:
+      object: User
+      key: id
+  campaign:
+    referenceTo:
+      object: Campaign
+      key: id
+  createdBy:
+    doctrineName: piCreated
+    referenceTo:
+      object: User
+      key: id

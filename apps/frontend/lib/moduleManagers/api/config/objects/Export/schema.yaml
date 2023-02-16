@@ -1,0 +1,95 @@
+isArchivable: false
+productTag: API_EXPORT
+operations:
+  read:
+    abilities:
+      $anyOf:
+        - PROSPECTS_PROSPECTS_EXPORT
+        - PROSPECTS_OPPS_EXPORT
+        - PROSPECTS_VISITORS
+    featureFlags: feature.api.version_5_release_242
+  query:
+    abilities:
+      $anyOf:
+        - PROSPECTS_PROSPECTS_EXPORT
+        - PROSPECTS_OPPS_EXPORT
+        - PROSPECTS_VISITORS
+    featureFlags: feature.api.version_5_release_242
+  create:
+    abilities:
+      $anyOf:
+        - PROSPECTS_PROSPECTS_EXPORT
+        - PROSPECTS_OPPS_EXPORT
+        - PROSPECTS_VISITORS
+    featureFlags: feature.api.version_5_release_242
+doctrineCreateModifier: \Api\Config\Objects\Export\ExportDoctrineCreateModifier
+doctrineQueryModifier: \Api\Config\Objects\Export\ExportDoctrineQueryModifier
+customUrlPath: /api/{version}/exports
+fields:
+  id:
+    type: integer
+    readOnly: true
+    filterable: true
+    sortable: true
+  status:
+    type: enum
+    readOnly: true
+    enumFieldClass: \Api\Config\Objects\Export\ExportStatusTypeEnum
+    filterable: true
+  isExpired:
+    type: boolean
+    readOnly: true
+    filterable: true
+  procedure:
+    type: ExportProcedureRepresentation
+    derived: true
+  createdAt:
+    type: datetime
+    readOnly: true
+    filterable: true
+    sortable: true
+  updatedAt:
+    type: datetime
+    readOnly: true
+    filterable: true
+    sortable: true
+  fields:
+    type: array
+    items: string
+    queryable: false
+    derived: true
+  resultRefs:
+    type: array
+    items: string
+    readOnly: true
+    queryable: false
+    bulkDataProcessor: Api\Config\BulkDataProcessors\ExportFilesBulkDataProcessor
+  createdById:
+    type: integer
+    doctrineField: created_by
+    readOnly: true
+  updatedById:
+    type: integer
+    doctrineField: updated_by
+    readOnly: true
+  includeByteOrderMark:
+    type: boolean
+    derived: true
+    required: false
+  maxFileSizeBytes:
+    type: integer
+    derived: true
+    required: false
+relationships:
+  createdBy:
+    bulkDataProcessor: Api\Config\BulkDataProcessors\UserBulkDataProcessor
+    doctrineName: createdById
+    referenceTo:
+      object: User
+      key: id
+  updatedBy:
+    bulkDataProcessor: Api\Config\BulkDataProcessors\UserBulkDataProcessor
+    doctrineName: updatedById
+    referenceTo:
+      object: User
+      key: id

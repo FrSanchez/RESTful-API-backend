@@ -1,0 +1,66 @@
+isArchivable: false
+productTag: Web Analytics
+operations:
+  read:
+    abilities: PROSPECTS_PROSPECTS_VIEW
+  query:
+    abilities: PROSPECTS_PROSPECTS_VIEW
+  export:
+    abilities: PROSPECTS_PROSPECTS_VIEW
+    featureFlags: feature.api.version_5_export_all
+fields:
+  id:
+    type: integer
+    readOnly: true
+    sortable: true
+    filterable: true
+  visitorId:
+    type: integer
+    required: true
+    filterable: true
+  prospectId:
+    type: integer
+    sortable: true
+    filterable: true
+    nullable: true
+  visitorPageViewCount:
+    type: integer
+    readOnly: true
+  firstVisitorPageViewAt:
+    type: datetime
+    readOnly: true
+  lastVisitorPageViewAt:
+    type: datetime
+    readOnly: true
+  durationInSeconds:
+    type: integer
+    readOnly: true
+  campaignParameter:
+    type: string
+  mediumParameter:
+    type: string
+  sourceParameter:
+    type: string
+  contentParameter:
+    type: string
+  termParameter:
+    type: string
+  createdAt:
+    type: datetime
+    readOnly: true
+    sortable: true
+    filterable: true
+  updatedAt:
+    type: datetime
+    readOnly: true
+    sortable: true
+    filterable: true
+relationships:
+  visitor:
+    referenceTo:
+      object: Visitor
+      key: id
+  prospect:
+    referenceTo:
+      object: Prospect
+      key: id

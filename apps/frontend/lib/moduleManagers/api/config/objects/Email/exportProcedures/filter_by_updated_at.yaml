@@ -1,0 +1,15 @@
+# Not ready to release - don't document
+class: Api\Config\Objects\Email\ExportProcedures\EmailFilterByUpdatedAtProcedure
+featureFlags:
+  $allOf:
+    - feature.api_bulk_export_email_updated_at
+arguments:
+  updated_after:
+    type: datetime
+    required: true
+  updated_before:
+    type: datetime
+    required: false
+  deleted:
+    type: boolean-or-string
+    required: false

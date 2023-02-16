@@ -1,0 +1,76 @@
+isArchivable: true
+productTag: M360 Ae Campaigns
+operations:
+  read:
+    abilities: MARKETING_OTHER_CAMPAIGNS_VIEW
+  query:
+    abilities: MARKETING_OTHER_CAMPAIGNS_VIEW
+  export:
+    abilities: MARKETING_OTHER_CAMPAIGNS_VIEW
+    featureFlags: feature.api.version_5_export_all
+fields:
+  id:
+    type: integer
+    sortable: true
+    filterable: true
+    readOnly: true
+  name:
+    type: string
+    required: true
+    filterable: true
+  folderId:
+    type: integer
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\FolderBulkDataProcessor
+    required: true
+  cost:
+    type: float
+    required: true
+  parentCampaignId:
+    type: integer
+  isDeleted:
+    type: boolean
+    doctrineField: is_archived
+    preVersion5Field: is_archived
+    readOnly: true
+  createdById:
+    type: integer
+    doctrineField: created_by
+    readOnly: true
+  updatedById:
+    type: integer
+    doctrineField: updated_by
+    readOnly: true
+  createdAt:
+    type: datetime
+    readOnly: true
+    sortable: true
+    filterable: true
+  updatedAt:
+    type: datetime
+    readOnly: true
+    sortable: true
+    filterable: true
+  salesforceId:
+    type: string
+    doctrineField: crm_fid
+    readOnly: true
+relationships:
+  parentCampaign:
+    referenceTo:
+      object: Campaign
+      key: id
+  createdBy:
+    doctrineName: piCreated
+    referenceTo:
+      object: User
+      key: id
+  updatedBy:
+    doctrineName: piUpdated
+    referenceTo:
+      object: User
+      key: id
+  folder:
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\FolderBulkDataProcessor
+    referenceTo:
+      object: Folder
+      key: id

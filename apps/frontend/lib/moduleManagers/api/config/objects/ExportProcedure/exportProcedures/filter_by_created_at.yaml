@@ -1,0 +1,13 @@
+class: Api\Config\Objects\Export\ExportProcedures\AllFilterByCreatedAtProcedure
+featureFlags: feature.api.version_5_export_all
+generateProcedure: false
+arguments:
+  createdAfter:
+    type: datetime
+    required: true
+  createdBefore:
+    type: datetime
+    required: false
+  deleted:
+    type: boolean-or-string
+    required: false

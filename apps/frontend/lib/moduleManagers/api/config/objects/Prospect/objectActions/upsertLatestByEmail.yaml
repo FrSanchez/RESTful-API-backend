@@ -1,0 +1,20 @@
+class: Api\Config\Objects\Prospect\ObjectActions\UpsertLatestByEmailObjectAction
+responseRepresentationName: ProspectRepresentation
+abilities:
+  $allOf:
+    - PROSPECTS_PROSPECTS_CREATE
+arguments:
+  matchEmail:
+    type: string
+    required: true
+  prospect:
+    type:
+      representationName: ProspectRepresentation
+    required: true
+  fields:
+    type: array
+    items: string
+    required: false
+  secondaryDeletedSearch:
+    type: boolean
+    required: false

@@ -1,0 +1,9 @@
+class: Api\Config\Objects\ExternalActivity\ExportProcedures\ExternalActivityFilterByActivityDateProcedure
+arguments:
+  activity_after:
+    type: datetime
+    required: true
+  activity_before:
+    type: datetime
+    required: false
+

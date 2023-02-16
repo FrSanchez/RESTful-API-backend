@@ -1,0 +1,100 @@
+productTag: API_SYNCHRONOUS
+isArchivable: true
+isSingleton: true
+operations:
+  read:
+    abilities: ADMIN_ACCOUNT_EDIT
+doctrineQueryModifier: \Api\Config\Objects\Account\AccountDoctrineQueryModifier
+fields:
+  id:
+    type: integer
+    readOnly: true
+  company:
+    type: string
+    readOnly: true
+  level:
+    type: string
+    derived: true
+    readOnly: true
+  website:
+    type: string
+    readOnly: true
+  pluginCampaignId:
+    type: integer
+    readOnly: true
+  addressOne:
+    type: string
+    readOnly: true
+  addressTwo:
+    type: string
+    readOnly: true
+  city:
+    type: string
+    readOnly: true
+  state:
+    type: string
+    readOnly: true
+  zip:
+    type: string
+    readOnly: true
+  territory:
+    type: string
+    readOnly: true
+  country:
+    type: string
+    readOnly: true
+  phone:
+    type: string
+    readOnly: true
+  fax:
+    type: string
+    readOnly: true
+  adminId:
+    type: integer
+    derived: true
+    readOnly: true
+  createdAt:
+    type: datetime
+    readOnly: true
+  updatedAt:
+    type: datetime
+    readOnly: true
+  maximumDailyApiCalls:
+    type: integer
+    readOnly: true
+    derived: true
+  apiCallsUsed:
+    type: integer
+    readOnly: true
+    derived: true
+  createdById:
+    type: integer
+    doctrineField: created_by
+    readOnly: true
+  updatedById:
+    type: integer
+    doctrineField: updated_by
+    readOnly: true
+relationships:
+  admin:
+    bulkDataProcessor: Api\Config\BulkDataProcessors\AdminBulkDataProcessor
+    referenceTo:
+      object: User
+      key: id
+  createdBy:
+    doctrineName: createdById
+    bulkDataProcessor: Api\Config\BulkDataProcessors\UserBulkDataProcessor
+    referenceTo:
+      object: User
+      key: id
+  updatedBy:
+    doctrineName: updatedById
+    bulkDataProcessor: Api\Config\BulkDataProcessors\UserBulkDataProcessor
+    referenceTo:
+      object: User
+      key: id
+  pluginCampaign:
+    doctrineName: piPluginCampaign
+    referenceTo:
+      object: Campaign
+      key: id

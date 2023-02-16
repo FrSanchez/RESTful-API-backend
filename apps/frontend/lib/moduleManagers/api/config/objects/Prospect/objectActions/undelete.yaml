@@ -1,0 +1,10 @@
+class: Api\Config\Objects\Prospect\ObjectActions\ProspectUndeleteAction
+responseRepresentationName: ProspectRepresentation
+abilities:
+  $allOf:
+    - PROSPECTS_PROSPECTS_DELETE
+arguments:
+  id:
+    type: integer
+  email:
+    type: string

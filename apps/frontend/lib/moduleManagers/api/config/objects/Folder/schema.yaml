@@ -1,0 +1,64 @@
+productTag: Folders
+isArchivable: true
+operations:
+  read:
+    abilities:
+      $allOf:
+        - ADMIN_FOLDERS_VIEW
+  query:
+    abilities:
+      $allOf:
+        - ADMIN_FOLDERS_VIEW
+  export:
+    abilities:
+      $allOf:
+        - ADMIN_FOLDERS_VIEW
+    featureFlags: feature.api.version_5_export_all
+fields:
+  id:
+    type: integer
+    readOnly: true
+    sortable: true
+    filterable: true
+  createdAt:
+    type: datetime
+    readOnly: true
+  createdById:
+    type: integer
+    doctrineField: created_by
+    readOnly: true
+  name:
+    type: string
+    required: true
+  parentFolderId:
+    type: integer
+    filterable: true # ix_folder_children
+    nullable: true
+  path:
+    type: string
+    readOnly: true
+  updatedAt:
+    type: datetime
+    readOnly: true
+  updatedById:
+    type: integer
+    doctrineField: updated_by
+    readOnly: true
+  usePermissions:
+    type: boolean
+    readOnly: true
+relationships:
+  createdBy:
+    doctrineName: piCreated
+    referenceTo:
+      object: User
+      key: id
+  parentFolder:
+    referenceTo:
+      object: Folder
+      key: id
+  updatedBy:
+    doctrineName: piUpdated
+    referenceTo:
+      object: User
+      key: id

@@ -1,0 +1,6 @@
+class: Api\Config\Objects\Salesforce\ObjectActions\pauseSalesforceConnectorObjectAction
+responseRepresentationName: SalesforceRepresentation
+abilities:
+  $allOf:
+    - ADMIN_CONNECTORS
+featureFlags: feature.api.enable_v5_salesforce_connector_api

@@ -1,0 +1,58 @@
+isArchivable: false
+productTag: Web Analytics
+operations:
+  read:
+    abilities: PROSPECTS_PROSPECTS_VIEW
+  query:
+    abilities: PROSPECTS_PROSPECTS_VIEW
+  export:
+    abilities: PROSPECTS_PROSPECTS_VIEW
+    featureFlags: feature.api.version_5_export_all
+fields:
+  id:
+    type: integer
+    readOnly: true
+    filterable: true
+    sortable: true
+  url:
+    type: string
+  title:
+    type: string
+  createdAt:
+    type: datetime
+    readOnly: true
+    filterable: true
+    sortable: true
+  visitorId:
+    type: integer
+    readOnly: true
+    filterable: true
+    sortable: true
+  campaignId:
+    type: integer
+    readOnly: true
+  visitId:
+    type: integer
+    readOnly: true
+    filterable: true
+    sortable: true
+  durationInSeconds:
+    type: integer
+    readOnly: true
+  salesforceId:
+    type: string
+    readOnly: true
+    doctrineField: crm_fid
+relationships:
+  visitor:
+    referenceTo:
+      object: Visitor
+      key: id
+  campaign:
+    referenceTo:
+      object: Campaign
+      key: id
+  visit:
+    referenceTo:
+      object: Visit
+      key: id

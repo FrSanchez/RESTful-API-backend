@@ -1,0 +1,74 @@
+productTag: Form Handlers
+isArchivable: false
+doctrineTable: piFormHandlerFormFieldTable
+operations:
+  read:
+    abilities: MARKETING_FORMS_FORMHANDLERS_VIEW
+  create:
+    abilities: MARKETING_FORMS_FORMHANDLERS_CREATE
+  update:
+    abilities: MARKETING_FORMS_FORMHANDLERS_CREATE
+  query:
+    abilities: MARKETING_FORMS_FORMHANDLERS_VIEW
+  export:
+    abilities: MARKETING_FORMS_FORMHANDLERS_VIEW
+    featureFlags: feature.api.version_5_export_all
+  delete:
+    abilities: MARKETING_FORMS_FORMHANDLERS_DELETE
+doctrineCreateModifier: \Api\Config\Objects\FormHandlerField\FormHandlerFieldDoctrineCreateModifier
+doctrineUpdateModifier: \Api\Config\Objects\FormHandlerField\FormHandlerFieldDoctrineUpdateModifier
+doctrineQueryModifier: \Api\Config\Objects\FormHandlerField\FormHandlerFieldDoctrineQueryModifier
+doctrineDeleteModifier: \Api\Config\Objects\FormHandlerField\FormHandlerFieldDoctrineDeleteModifier
+fields:
+  id:
+    type: integer
+    readOnly: true
+    filterable: true
+    sortable: true
+  name:
+    type: string
+    required: true
+    nullable: false
+  formHandlerId:
+    type: integer
+    filterable: true
+    sortable: true
+    required: true
+    nullable: false
+  isMaintainInitialValue:
+    type: boolean
+  isRequired:
+    type: boolean
+    nullable: false
+  createdAt:
+    type: datetime
+    readOnly: true
+    filterable: true
+    sortable: true
+  createdById:
+    type: integer
+    doctrineField: created_by
+    readOnly: true
+  dataFormat:
+    type: enum
+    enumFieldClass: \Api\Config\Objects\FormHandlerField\FormHandlerDataFormatEnum
+    required: true
+    nullable: false
+  errorMessage:
+    type: string
+  prospectApiFieldId:
+    type: string
+    derived: true
+    required: true
+    nullable: false
+relationships:
+  createdBy:
+    doctrineName: piCreated
+    referenceTo:
+      object: User
+      key: id
+  formHandler:
+    doctrineName: piFormHandler
+    referenceTo:
+      object: FormHandler
+      key: id

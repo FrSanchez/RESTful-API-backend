@@ -1,0 +1,18 @@
+# sample polymorphic representation
+suppressDescriptors: true
+properties:
+  name:
+    type: string
+  arguments:
+    $oneOf:
+      One:
+        representation: TestClassOneRepresentation
+      Two:
+        representation: TestClassTwoRepresentation
+    discriminatorException:
+      type: \Api\Exceptions\ApiException
+      parameters:
+        - \ApiErrorLibrary::API_ERROR_INVALID_PROCEDURE_NAME
+        - ''
+        - \RESTClient::HTTP_BAD_REQUEST
+    discriminator: name

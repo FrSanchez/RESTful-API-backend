@@ -1,0 +1,9 @@
+class: Api\Config\Objects\Campaign\RecordActions\ConnectSalesforceCampaignRecordAction
+responseRepresentationName: CampaignRepresentation
+abilities:
+  $allOf:
+    - MARKETING_OTHER_CAMPAIGNS_CREATE
+arguments:
+  salesforceCampaignId:
+    type: string
+    required: true

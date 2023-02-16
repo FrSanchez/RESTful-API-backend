@@ -1,0 +1,10 @@
+class: Api\Config\Objects\Export\RecordActions\ExportCancelAction
+responseRepresentationName: ExportRepresentation
+abilities:
+  $anyOf:
+    - PROSPECTS_PROSPECTS_EXPORT
+    - PROSPECTS_OPPS_EXPORT
+    - PROSPECTS_VISITORS
+featureFlags:
+  $allOf:
+    - feature.api.version_5_release_242

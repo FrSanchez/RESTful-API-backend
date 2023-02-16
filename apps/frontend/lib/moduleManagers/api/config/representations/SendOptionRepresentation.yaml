@@ -1,0 +1,14 @@
+properties:
+  type:
+    type: enum
+    enumFieldClass: Api\Config\Objects\Email\EmailSendOptionTypeEnum
+  address:
+    type: string
+  name:
+    type: string
+  userId:
+    type: integer
+  prospectCustomFieldId:
+    type: integer
+  accountCustomFieldId:
+    type: integer

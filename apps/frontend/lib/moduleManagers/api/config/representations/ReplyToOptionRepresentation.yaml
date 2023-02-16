@@ -1,0 +1,12 @@
+properties:
+  type:
+    type: enum
+    enumFieldClass: Api\Config\Objects\Email\EmailReplyToOptionTypeEnum
+  address:
+    type: string
+  userId:
+    type: integer
+  prospectCustomFieldId:
+    type: integer
+  accountCustomFieldId:
+    type: integer

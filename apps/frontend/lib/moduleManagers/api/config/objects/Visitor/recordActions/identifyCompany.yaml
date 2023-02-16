@@ -1,0 +1,5 @@
+class: Api\Config\Objects\Visitor\RecordActions\VisitorIdentifyCompanyRecordAction
+responseRepresentationName: IdentifiedCompanyRepresentation
+abilities:
+  $allOf:
+    - PROSPECTS_VISITORS_VIEW

@@ -1,0 +1,113 @@
+productTag: Tracker Domain Management
+isArchivable: true
+operations:
+  read:
+    abilities:
+      $anyOf:
+        - MARKETING_CONTENT_FILES_VIEW
+        - MARKETING_CONTENT_CUSTOMREDIRECTS_VIEW
+        - MARKETING_FORMS_FORMS_VIEW
+        - MARKETING_FORMS_FORMHANDLERS_VIEW
+        - MARKETING_LANDINGPAGES_LANDINGPAGES_VIEW
+  query:
+    abilities:
+      $anyOf:
+        - MARKETING_CONTENT_FILES_VIEW
+        - MARKETING_CONTENT_CUSTOMREDIRECTS_VIEW
+        - MARKETING_FORMS_FORMS_VIEW
+        - MARKETING_FORMS_FORMHANDLERS_VIEW
+        - MARKETING_LANDINGPAGES_LANDINGPAGES_VIEW
+  export:
+    abilities:
+      $anyOf:
+        - MARKETING_CONTENT_FILES_VIEW
+        - MARKETING_CONTENT_CUSTOMREDIRECTS_VIEW
+        - MARKETING_FORMS_FORMS_VIEW
+        - MARKETING_FORMS_FORMHANDLERS_VIEW
+        - MARKETING_LANDINGPAGES_LANDINGPAGES_VIEW
+    featureFlags: feature.api.version_5_export_all
+doctrineQueryModifier: \Api\Config\Objects\TrackerDomain\TrackerDomainDoctrineQueryModifier
+fields:
+  id:
+    type: integer
+    sortable: true
+    filterable: true
+    readOnly: true
+  domain:
+    type: string
+    required: true
+  isPrimary:
+    type: boolean
+  isDeleted:
+    type: boolean
+    doctrineField: is_archived
+    preVersion5Field: is_archived
+    readOnly: true
+  validationStatus:
+    type: enum
+    readOnly: true
+    enumFieldClass: \Api\Config\Objects\TrackerDomain\TrackerDomainValidationStatusEnum
+  sslStatus:
+    type: string
+    derived: true
+    readOnly: true
+  sslRequestedById:
+    type: integer
+    readOnly: true
+    doctrineField: ssl_requested_by
+  sslStatusDetails:
+    type: string
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\TrackerDomainSslStatusDetailFieldBulkDataProcessor
+    readOnly: true
+  httpsStatus:
+    type: string
+    derived: true
+    readOnly: true
+  vanityUrlStatus:
+    type: enum
+    readOnly: true
+    enumFieldClass: \Api\Config\Objects\TrackerDomain\TrackerDomainVanityUrlStatusEnum
+  validatedAt:
+    type: datetime
+    readOnly: true
+  createdById:
+    type: integer
+    doctrineField: created_by
+    readOnly: true
+  updatedById:
+    type: integer
+    doctrineField: updated_by
+    readOnly: true
+  createdAt:
+    type: datetime
+    readOnly: true
+  updatedAt:
+    type: datetime
+    readOnly: true
+  defaultCampaignId:
+    type: integer
+    nullable: true
+  trackingCode:
+    type: string
+    readOnly: true
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\TrackingCodeBulkDataProcessor
+relationships:
+  createdBy:
+    doctrineName: piCreated
+    referenceTo:
+      object: User
+      key: id
+  updatedBy:
+    doctrineName: piUpdated
+    referenceTo:
+      object: User
+      key: id
+  defaultCampaign:
+    referenceTo:
+      object: Campaign
+      key: id
+  sslRequestedBy:
+    doctrineName: piSslRequested
+    referenceTo:
+      object: User
+      key: id

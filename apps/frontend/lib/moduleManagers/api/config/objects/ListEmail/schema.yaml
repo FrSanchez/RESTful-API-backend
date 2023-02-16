@@ -1,0 +1,115 @@
+isArchivable: true
+productTag: Email Sending
+doctrineQueryModifier: \Api\Config\Objects\ListEmail\ListEmailDoctrineQueryModifier
+operations:
+  read:
+    abilities: MARKETING_EMAILS_EMAILS_VIEW
+  query:
+    abilities: MARKETING_EMAILS_EMAILS_VIEW
+  export:
+    abilities: MARKETING_EMAILS_EMAILS_VIEW
+    featureFlags: feature.api.version_5_export_all
+fields:
+  id:
+    type: integer
+    readOnly: true
+    sortable: true
+    filterable: true
+  name:
+    type: string
+    readOnly: true
+  subject:
+    type: string
+    derived: true
+  htmlMessage:
+    type: string
+    derived: true
+    queryable: false
+  textMessage:
+    type: string
+    derived: true
+    queryable: false
+  campaignId:
+    type: integer
+    readOnly: true
+  isPaused:
+    type: boolean
+    readOnly: true
+  isSent:
+    type: boolean
+    readOnly: true
+  isDeleted:
+    type: boolean
+    doctrineField: is_archived
+    preVersion5Field: is_archived
+  replyToOptions:
+    type: array
+    items: ReplyToOptionRepresentation
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\EmailSendOptionsBulkDataProcessor
+  senderOptions:
+    type: array
+    items: SendOptionRepresentation
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\EmailSendOptionsBulkDataProcessor
+  clientType:
+    type: string
+    readOnly: true
+    derived: true
+  createdById:
+    type: integer
+    readOnly: true
+    doctrineField: created_by
+  updatedById:
+    type: integer
+    readOnly: true
+    doctrineField: updated_by
+  createdAt:
+    type: datetime
+    readOnly: true
+    sortable: true
+    filterable: true
+  updatedAt:
+    type: datetime
+    readOnly: true
+    sortable: true
+    filterable: true
+  sentAt:
+    type: datetime
+    readOnly: true
+    sortable: true
+    filterable: true
+  operationalEmail:
+    type: boolean
+    readOnly: true
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\ListEmailSendOptionsBulkDataProcessor
+  trackerDomainId:
+    type: integer
+    readOnly: true
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\ListEmailSendOptionsBulkDataProcessor
+  emailTemplateId:
+    type: integer
+    readOnly: true
+    derived: true
+relationships:
+  campaign:
+    referenceTo:
+      object: Campaign
+      key: id
+  createdBy:
+    doctrineName: piCreated
+    referenceTo:
+      object: User
+      key: id
+  updatedBy:
+    doctrineName: piUpdated
+    referenceTo:
+      object: User
+      key: id
+collections:
+  recipientLists:
+    itemType:
+      objectType: List
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\ListEmailListsBulkDataProcessor
+  suppressionLists:
+    itemType:
+      objectType: List
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\ListEmailListsBulkDataProcessor

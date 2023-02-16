@@ -1,0 +1,80 @@
+isArchivable: true
+productTag: Dynamic Content
+operations:
+  read:
+    abilities: MARKETING_CONTENT_DYNAMICCONTENT_VIEW
+  query:
+    abilities: MARKETING_CONTENT_DYNAMICCONTENT_VIEW
+  export:
+    abilities: MARKETING_CONTENT_DYNAMICCONTENT_VIEW
+    featureFlags: feature.api.version_5_export_all
+fields:
+  id:
+    type: integer
+    sortable: true
+    filterable: true
+    readOnly: true
+  name:
+    type: string
+    required: true
+  folderId:
+    type: integer
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\FolderBulkDataProcessor
+    required: true
+  isDeleted:
+    type: boolean
+    doctrineField: is_archived
+    preVersion5Field: is_archived
+    readOnly: true
+  createdById:
+    type: integer
+    doctrineField: created_by
+    readOnly: true
+  updatedById:
+    type: integer
+    doctrineField: updated_by
+    readOnly: true
+  createdAt:
+    type: datetime
+    readOnly: true
+    sortable: true
+    filterable: true
+  updatedAt:
+    type: datetime
+    readOnly: true
+    sortable: true
+    filterable: true
+  baseContent:
+    type: string
+    queryable: false
+  basedOn:
+    type: enum
+    enumFieldClass: \Api\Config\Objects\DynamicContent\DynamicContentBasedOnEnum
+  trackerDomainId:
+    type: integer
+  embedCode:
+    type: string
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\DynamicContentEmbedCodeAndEmbedUrlBulkDataProcessor
+  embedUrl:
+    type: string
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\DynamicContentEmbedCodeAndEmbedUrlBulkDataProcessor
+relationships:
+  createdBy:
+    doctrineName: piCreatedByUser
+    referenceTo:
+      object: User
+      key: id
+  updatedBy:
+    doctrineName: piUpdatedByUser
+    referenceTo:
+      object: User
+      key: id
+  folder:
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\FolderBulkDataProcessor
+    referenceTo:
+      object: Folder
+      key: id
+  trackerDomain:
+    referenceTo:
+      object: TrackerDomain
+      key: id

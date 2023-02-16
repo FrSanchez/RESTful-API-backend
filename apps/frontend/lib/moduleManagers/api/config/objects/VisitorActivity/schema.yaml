@@ -1,0 +1,139 @@
+productTag: API Synchronous
+isArchivable: false
+operations:
+  read:
+    abilities:
+      $allOf:
+        - PROSPECTS_VISITORS_VIEW
+  query:
+    abilities:
+      $allOf:
+        - PROSPECTS_VISITORS_VIEW
+  export:
+    abilities:
+      $anyOf: [ PROSPECTS_VISITORS_VIEW ]
+doctrineQueryModifier: \Api\Config\Objects\VisitorActivity\VisitorActivityDoctrineQueryModifier
+fields:
+  id:
+    type: integer
+    sortable: true
+    filterable: true
+    readOnly: true
+  campaignId:
+    type: integer
+  createdAt:
+    type: datetime
+    sortable: true
+    filterable: true
+  updatedAt:
+    type: datetime
+    sortable: true # visitor_activity_ix_updated_at_composite(account_id, updated_at, type, is_filtered)
+    filterable: true
+  customRedirectId:
+    type: integer
+    doctrineField: custom_url_id
+  details:
+    type: string
+    derived: true
+  emailId:
+    type: integer
+  emailTemplateId:
+    type: integer
+    derived: true
+  fileId:
+    type: integer
+    doctrineField: filex_id
+  formId:
+    type: integer
+  formHandlerId:
+    type: integer
+  landingPageId:
+    type: integer
+  listEmailId:
+    type: integer
+    derived: true
+  multivariateTestVariationId:
+    type: integer
+  opportunityId:
+    type: integer
+  paidSearchAdId:
+    type: integer
+  prospectId:
+    type: integer
+    filterable: true
+  siteSearchQueryId:
+    type: integer
+  type:
+    type: integer
+    filterable: true
+  typeName:
+    type: string
+    derived: true
+  visitId:
+    type: integer
+  visitorId:
+    type: integer
+    filterable: true
+  visitorPageViewId:
+    type: integer
+relationships:
+  campaign:
+    referenceTo:
+      object: Campaign
+      key: id
+  customRedirect:
+    doctrineName: piCustomUrl
+    referenceTo:
+      object: CustomRedirect
+      key: id
+  emailTemplate:
+    bulkDataProcessor: Api\Config\BulkDataProcessors\VisitorActivityEmailTemplateBulkDataProcessor
+    referenceTo:
+      object: EmailTemplate
+      key: id
+  file:
+    doctrineName: piFilex
+    referenceTo:
+      object: File
+      key: id
+  form:
+    referenceTo:
+      object: Form
+      key: id
+  formHandler:
+    referenceTo:
+      object: FormHandler
+      key: id
+  landingPage:
+    referenceTo:
+      object: LandingPage
+      key: id
+  listEmail:
+    bulkDataProcessor: Api\Config\BulkDataProcessors\VisitorActivityListEmailBulkDataProcessor
+    referenceTo:
+      object: ListEmail
+      key: id
+  opportunity:
+    referenceTo:
+      object: Opportunity
+      key: id
+  prospect:
+    referenceTo:
+      object: Prospect
+      key: id
+  visit:
+    referenceTo:
+      object: Visit
+      key: id
+  visitor:
+    referenceTo:
+      object: Visitor
+      key: id
+  visitorPageView:
+    referenceTo:
+      object: VisitorPageView
+      key: id
+  email:
+    referenceTo:
+      object: Email
+      key: id

@@ -1,0 +1,31 @@
+productTag: EXTERNAL_ACTIVITIES
+isArchivable: false
+doctrineQueryModifier: \Api\Config\Objects\LifecycleStageProspect\LifecycleStageProspectDoctrineQueryModifier
+operations:
+  export:
+    abilities:
+      $allOf:
+        - PROSPECTS_LIFECYCLE_VIEWREPORT
+fields:
+  id:
+    type: integer
+    readOnly: true
+    sortable: true
+  lifecycleStageName:
+    type: string
+    derived: true
+  lifecycleId:
+    type: integer
+    readOnly: true
+  lifecycleStageId:
+    type: integer
+    readOnly: true
+  prospectId:
+    type: integer
+    readOnly: true
+  createdAt:
+    type: datetime
+    readOnly: true
+  updatedAt:
+    type: datetime
+    readOnly: true

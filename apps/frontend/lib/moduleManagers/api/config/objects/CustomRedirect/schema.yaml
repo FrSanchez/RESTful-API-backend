@@ -1,0 +1,118 @@
+doctrineTable: piCustomUrlTable
+productTag: Custom Redirects
+isArchivable: true
+operations:
+  read:
+    abilities: MARKETING_CONTENT_CUSTOMREDIRECTS_VIEW
+  delete:
+    abilities: MARKETING_CONTENT_CUSTOMREDIRECTS_DELETE
+  query:
+    abilities: MARKETING_CONTENT_CUSTOMREDIRECTS_VIEW
+  export:
+    abilities: MARKETING_CONTENT_CUSTOMREDIRECTS_VIEW
+    featureFlags: feature.api.version_5_export_all
+  create:
+    abilities: MARKETING_CONTENT_CUSTOMREDIRECTS_CREATE
+  update:
+    abilities: MARKETING_CONTENT_CUSTOMREDIRECTS_CREATE
+doctrineQueryModifier: \Api\Config\Objects\CustomRedirect\CustomRedirectDoctrineQueryModifier
+doctrineDeleteModifier: \Api\Config\Objects\CustomRedirect\CustomRedirectDoctrineDeleteModifier
+doctrineCreateModifier: \Api\Config\Objects\CustomRedirect\CustomRedirectDoctrineCreateModifier
+doctrineUpdateModifier: \Api\Config\Objects\CustomRedirect\CustomRedirectDoctrineUpdateModifier
+fields:
+  id:
+    type: integer
+    readOnly: true
+    sortable: true
+    filterable: true
+  salesforceId:
+    type: string
+    doctrineField: salesforce_fid
+    readOnly: true
+  folderId:
+    type: integer
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\FolderBulkDataProcessor
+  name:
+    type: string
+    required: true
+  destinationUrl:
+    type: string
+    doctrineField: dest_url
+    required: true
+  campaignId:
+    type: integer
+    required: true
+  trackerDomainId:
+    type: integer
+  vanityUrlPath:
+    type: string
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\TrackerAndTrackerDomainBulkDataProcessor
+  vanityUrl:
+    type: string
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\TrackerAndTrackerDomainBulkDataProcessor
+    readOnly: true
+  trackedUrl:
+    type: string
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\TrackerAndTrackerDomainBulkDataProcessor
+    readOnly: true
+  gaSource:
+    type: string
+  gaMedium:
+    type: string
+  gaTerm:
+    type: string
+  gaContent:
+    type: string
+  gaCampaign:
+    type: string
+  bitlyIsPersonalized:
+    type: boolean
+    derived: true
+    readOnly: true
+  bitlyShortUrl:
+    type: string
+    derived: true
+    readOnly: true
+  createdAt:
+    type: datetime
+    readOnly: true
+  updatedAt:
+    type: datetime
+    readOnly: true
+  createdById:
+    type: integer
+    doctrineField: created_by
+    readOnly: true
+  updatedById:
+    type: integer
+    doctrineField: updated_by
+    readOnly: true
+  isDeleted:
+    type: boolean
+    doctrineField: is_archived
+    readOnly: true
+    preVersion5Field: is_archived
+relationships:
+  createdBy:
+    doctrineName: piCreated
+    referenceTo:
+      object: User
+      key: id
+  updatedBy:
+    doctrineName: piUpdated
+    referenceTo:
+      object: User
+      key: id
+  trackerDomain:
+    referenceTo:
+      object: TrackerDomain
+      key: id
+  campaign:
+    referenceTo:
+      object: Campaign
+      key: id
+  folder:
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\FolderBulkDataProcessor
+    referenceTo:
+      object: Folder
+      key: id

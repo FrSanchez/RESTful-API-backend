@@ -1,0 +1,95 @@
+doctrineTable: piListxTable
+productTag: Prospect Lists
+isArchivable: true
+operations:
+  read:
+    abilities: MARKETING_SEGMENTATION_LISTS_VIEW
+  query:
+    abilities: MARKETING_SEGMENTATION_LISTS_VIEW
+  export:
+    abilities: MARKETING_SEGMENTATION_LISTS_VIEW
+    featureFlags: feature.api.version_5_export_all
+  delete:
+    abilities: MARKETING_SEGMENTATION_LISTS_DELETE
+  create:
+    abilities: MARKETING_SEGMENTATION_LISTS_CREATE
+  update:
+    abilities: MARKETING_SEGMENTATION_LISTS_CREATE
+doctrineQueryModifier: \Api\Config\Objects\Listx\ListDoctrineQueryModifier
+doctrineCreateModifier: \Api\Config\Objects\Listx\ListDoctrineCreateModifier
+doctrineUpdateModifier: \Api\Config\Objects\Listx\ListDoctrineUpdateModifier
+fields:
+  id:
+    type: integer
+    readOnly: true
+    sortable: true
+    filterable: true
+  name:
+    type: string
+    required: true
+    filterable: true
+    nullable: false
+  description:
+    type: string
+    nullable: true
+  title:
+    type: string
+    nullable: true
+  isDeleted:
+    type: boolean
+    doctrineField: is_archived
+    readOnly: true
+    preVersion5Field: is_archived
+  isDynamic:
+    type: boolean
+    derived: true
+    readOnly: true
+  isPublic:
+    type: boolean
+  isSalesforceVisible:
+    type: boolean
+    doctrineField: is_crm_visible
+  createdById:
+    type: integer
+    doctrineField: created_by
+    readOnly: true
+  updatedById:
+    type: integer
+    doctrineField: updated_by
+    readOnly: true
+  createdAt:
+    type: datetime
+    readOnly: true
+    sortable: true
+    filterable: true
+  updatedAt:
+    type: datetime
+    readOnly: true
+    sortable: true
+    filterable: true
+  folderId:
+    type: integer
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\FolderBulkDataProcessor
+  campaignId:
+    type: integer
+    nullable: true
+relationships:
+  createdBy:
+    doctrineName: piCreated
+    referenceTo:
+      object: User
+      key: id
+  updatedBy:
+    doctrineName: piUpdated
+    referenceTo:
+      object: User
+      key: id
+  folder:
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\FolderBulkDataProcessor
+    referenceTo:
+      object: Folder
+      key: id
+  campaign:
+    referenceTo:
+      object: Campaign
+      key: id

@@ -1,0 +1,152 @@
+isArchivable: true
+productTag: LANDING_PAGES
+operations:
+  read:
+    abilities: MARKETING_LANDINGPAGES_LANDINGPAGES_VIEW
+  query:
+    abilities: MARKETING_LANDINGPAGES_LANDINGPAGES_VIEW
+  export:
+    abilities: MARKETING_LANDINGPAGES_LANDINGPAGES_VIEW
+    featureFlags: feature.api.version_5_export_all
+doctrineQueryModifier: \Api\Config\Objects\LandingPage\LandingPageDoctrineQueryModifier
+fields:
+  id:
+    type: integer
+    sortable: true
+    filterable: true
+    readOnly: true
+  name:
+    type: string
+    readOnly: true
+  salesforceId:
+    type: string
+    readOnly: true
+    doctrineField: salesforce_fid
+  isDeleted:
+    type: boolean
+    doctrineField: is_archived
+    readOnly: true
+  createdById:
+    type: integer
+    readOnly: true
+    doctrineField: created_by
+  createdAt:
+    type: datetime
+    sortable: true
+    filterable: true
+    readOnly: true
+  updatedById:
+    type: integer
+    readOnly: true
+    doctrineField: updated_by
+  updatedAt:
+    type: datetime
+    sortable: true
+    filterable: true
+    readOnly: true
+  campaignId:
+    type: integer
+    readOnly: true
+  formId:
+    type: integer
+    readOnly: true
+  layoutTemplateId:
+    type: integer
+    readOnly: true
+  title:
+    type: string
+    readOnly: true
+  description:
+    type: string
+    readOnly: true
+  isDoNotIndex:
+    type: boolean
+    readOnly: true
+  vanityUrl:
+    type: string
+    readOnly: true
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\TrackerAndTrackerDomainBulkDataProcessor
+  vanityUrlPath:
+    type: string
+    readOnly: true
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\TrackerAndTrackerDomainBulkDataProcessor
+  layoutType:
+    type: enum
+    readOnly: true
+    enumFieldClass: \Api\Config\Objects\LandingPage\LandingPageLayoutTypeEnum
+  scriptFragment:
+    type: string
+    readOnly: true
+    queryable: false
+  layoutCss:
+    type: string
+    readOnly: true
+    queryable: false
+  layoutCssGenerated:
+    type: string
+    readOnly: true
+    queryable: false
+  layoutTableBorder:
+    type: integer
+    readOnly: true
+  redirectLocation:
+    type: string
+    readOnly: true
+  isUseRedirectLocation:
+    type: boolean
+    readOnly: true
+  bitlyIsPersonalized:
+    type: boolean
+    derived: true
+    readOnly: true
+  bitlyShortUrl:
+    type: string
+    derived: true
+    readOnly: true
+  trackerDomainId:
+    type: integer
+    readOnly: true
+  folderId:
+    type: integer
+    readOnly: true
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\FolderBulkDataProcessor
+  url:
+    type: string
+    readOnly: true
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\TrackerAndTrackerDomainBulkDataProcessor
+relationships:
+  createdBy:
+    doctrineName: piCreated
+    referenceTo:
+      object: User
+      key: id
+  updatedBy:
+    doctrineName: piUpdated
+    referenceTo:
+      object: User
+      key: id
+  folder:
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\FolderBulkDataProcessor
+    referenceTo:
+      object: Folder
+      key: id
+  campaign:
+    doctrineName: piCampaign
+    referenceTo:
+      object: Campaign
+      key: id
+  form:
+    doctrineName: piForm
+    referenceTo:
+      object: Form
+      key: id
+  layoutTemplate:
+    doctrineName: piLayoutTemplate
+    referenceTo:
+      object: LayoutTemplate
+      key: id
+  trackerDomain:
+    doctrineName: piTrackerDomain
+    referenceTo:
+      object: TrackerDomain
+      key: id

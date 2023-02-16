@@ -1,0 +1,12 @@
+properties:
+  name:
+    type: string
+  city:
+    type: string
+  state:
+    type: string
+  postalCode:
+    type: string
+  country:
+    type: string
+

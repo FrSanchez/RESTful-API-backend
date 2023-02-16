@@ -1,0 +1,13 @@
+# Internal procedure only - do not document
+class: Api\Config\Objects\LifecycleStageProspect\ExportProcedures\LifecycleStageProspectFilterByUpdatedAtProcedure
+featureFlags:
+  $allOf:
+    - feature.api.pardot_bulk_export_230
+internalOnly: true
+arguments:
+  updated_after:
+    type: datetime
+    required: true
+  updated_before:
+    type: datetime
+    required: false

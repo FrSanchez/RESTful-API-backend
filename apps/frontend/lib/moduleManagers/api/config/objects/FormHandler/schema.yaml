@@ -1,0 +1,111 @@
+productTag: Form Handlers
+isArchivable: true
+operations:
+  read:
+    abilities: MARKETING_FORMS_FORMHANDLERS_VIEW
+  query:
+    abilities: MARKETING_FORMS_FORMHANDLERS_VIEW
+  delete:
+    abilities: MARKETING_FORMS_FORMHANDLERS_DELETE
+  create:
+    abilities: MARKETING_FORMS_FORMHANDLERS_CREATE
+  update:
+    abilities: MARKETING_FORMS_FORMHANDLERS_CREATE
+  export:
+    abilities: MARKETING_FORMS_FORMHANDLERS_VIEW
+    featureFlags: feature.api.version_5_export_all
+doctrineCreateModifier: \Api\Config\Objects\FormHandler\FormHandlerDoctrineCreateModifier
+doctrineUpdateModifier: \Api\Config\Objects\FormHandler\FormHandlerDoctrineUpdateModifier
+fields:
+  id:
+    type: integer
+    readOnly: true
+    filterable: true
+    sortable: true
+  name:
+    type: string
+    required: true
+    nullable: false
+  salesforceId:
+    type: string
+    doctrineField: salesforce_fid
+    preVersion5Field: salesforce_fid
+    readOnly: true
+  campaignId:
+    type: integer
+    required: true
+    nullable: false
+  embedCode:
+    type: string
+    readOnly: true
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\TrackerAndTrackerDomainBulkDataProcessor
+  createdAt:
+    type: datetime
+    readOnly: true
+    filterable: true
+    sortable: true
+  updatedAt:
+    type: datetime
+    readOnly: true
+    filterable: true
+    sortable: true
+  createdById:
+    type: integer
+    doctrineField: created_by
+    readOnly: true
+  updatedById:
+    type: integer
+    doctrineField: updated_by
+    readOnly: true
+  trackerDomainId:
+    type: integer
+  isDataForwarded:
+    type: boolean
+  successLocation:
+    type: string
+    derived: true
+  errorLocation:
+    type: string
+    derived: true
+  isAlwaysEmail:
+    type: boolean
+  isCookieless:
+    type: boolean
+  isDeleted:
+    type: boolean
+    readOnly: true
+    doctrineField: is_archived
+    preVersion5Field: is_archived
+  folderId:
+    type: integer
+    required: true
+    nullable: false
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\FolderBulkDataProcessor
+  url:
+    type: string
+    readOnly: true
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\TrackerAndTrackerDomainBulkDataProcessor
+relationships:
+  createdBy:
+    doctrineName: piCreated
+    referenceTo:
+      object: User
+      key: id
+  updatedBy:
+    doctrineName: piUpdated
+    referenceTo:
+      object: User
+      key: id
+  folder:
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\FolderBulkDataProcessor
+    referenceTo:
+      object: Folder
+      key: id
+  campaign:
+    referenceTo:
+      object: Campaign
+      key: id
+  trackerDomain:
+    referenceTo:
+      object: TrackerDomain
+      key: id

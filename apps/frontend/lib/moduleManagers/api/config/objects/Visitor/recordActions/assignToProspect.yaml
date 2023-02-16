@@ -1,0 +1,11 @@
+class: Api\Config\Objects\Visitor\RecordActions\VisitorAssignToProspectRecordAction
+responseRepresentationName: VisitorRepresentation
+abilities:
+  $allOf:
+    - PROSPECTS_VISITORS_VIEW
+arguments:
+  prospectId:
+    type: integer
+    required: true
+  assignDeletedProspect:
+    type: boolean

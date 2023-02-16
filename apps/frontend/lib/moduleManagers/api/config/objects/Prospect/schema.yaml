@@ -1,0 +1,325 @@
+productTag: Prospect
+isArchivable: true
+customFieldProvider: \Api\Config\Objects\Prospect\ProspectCustomFieldProvider
+doctrineQueryModifier: \Api\Config\Objects\Prospect\ProspectDoctrineQueryModifier
+doctrineCreateModifier: \Api\Config\Objects\Prospect\ProspectDoctrineCreateModifier
+doctrineUpdateModifier: \Api\Config\Objects\Prospect\ProspectDoctrineUpdateModifier
+doctrineDeleteModifier: \Api\Config\Objects\Prospect\ProspectDoctrineDeleteModifier
+operations:
+  read:
+    abilities: PROSPECTS_PROSPECTS_VIEW
+  query:
+    abilities: PROSPECTS_PROSPECTS_VIEW
+  delete:
+    abilities: PROSPECTS_PROSPECTS_DELETE
+  create:
+    abilities: PROSPECTS_PROSPECTS_CREATE
+  update:
+    abilities: PROSPECTS_PROSPECTS_CREATE
+  export:
+    abilities:
+      $allOf:
+        - PROSPECTS_PROSPECTS_VIEW
+        - PROSPECTS_PROSPECTS_EXPORT
+fields:
+  id:
+    type: integer
+    sortable: true
+    filterable: true
+    readOnly: true
+  addressOne:
+    type: string
+  addressTwo:
+    type: string
+  annualRevenue:
+    type: string
+  campaignId:
+    type: integer
+  campaignParameter:
+    type: string
+    readOnly: true
+    preVersion5ExportDefault: false
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\ProspectGoogleAnalyticsParamsBulkDataProcessor
+    featureFlags: feature.api.enable_export_prospect_extended_fields
+  salesforceCampaignId:
+    type: string
+    derived: true
+    preVersion5Field: crm_campaign_fid
+    readOnly: true
+  city:
+    type: string
+  comments:
+    type: string
+  company:
+    type: string
+  contentParameter:
+    type: string
+    readOnly: true
+    preVersion5ExportDefault: false
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\ProspectGoogleAnalyticsParamsBulkDataProcessor
+    featureFlags: feature.api.enable_export_prospect_extended_fields
+  convertedAt:
+    type: datetime
+    readOnly: true
+    preVersion5ExportDefault: false
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\ProspectConversionBulkDataProcessor
+    featureFlags: feature.api.enable_export_prospect_extended_fields
+  convertedFromObjectName:
+    type: string
+    readOnly: true
+    preVersion5ExportDefault: false
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\ProspectConversionBulkDataProcessor
+    featureFlags: feature.api.enable_export_prospect_extended_fields
+  convertedFromObjectType:
+    type: string
+    readOnly: true
+    preVersion5ExportDefault: false
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\ProspectConversionBulkDataProcessor
+    featureFlags: feature.api.enable_export_prospect_extended_fields
+  country:
+    type: string
+  createdAt:
+    type: datetime
+    sortable: true # ix_account_id_created_at(account_id, created_at)
+    filterable: true
+    readOnly: true
+  createdById:
+    type: integer
+    doctrineField: created_by
+    readOnly: true
+  salesforceAccountId:
+    type: string
+    preVersion5Field: crm_account_fid
+    doctrineField: crm_account_fid
+    readOnly: true
+  salesforceContactId:
+    type: string
+    preVersion5Field: crm_contact_fid
+    doctrineField: crm_contact_fid
+    readOnly: true
+  salesforceLastSync:
+    type: datetime
+    preVersion5Field: crm_last_sync
+    doctrineField: crm_last_activity
+    readOnly: true
+  salesforceLeadId:
+    type: string
+    preVersion5Field: crm_lead_fid
+    doctrineField: crm_lead_fid
+    readOnly: true
+  salesforceOwnerId:
+    type: string
+    preVersion5Field: crm_owner_fid
+    doctrineField: crm_owner_fid
+  department:
+    type: string
+  email:
+    type: string
+    required: true
+    nullable: false
+    filterable: true
+  emailBouncedAt:
+    type: datetime
+    readOnly: true
+    preVersion5ExportDefault: false
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\ProspectEmailBouncedBulkDataProcessor
+    featureFlags: feature.api.enable_export_prospect_extended_fields
+  emailBouncedReason:
+    type: string
+    readOnly: true
+    preVersion5ExportDefault: false
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\ProspectEmailBouncedBulkDataProcessor
+    featureFlags: feature.api.enable_export_prospect_extended_fields
+  employees:
+    type: string
+  fax:
+    type: string
+  firstActivityAt:
+    type: datetime
+    readOnly: true
+    preVersion5ExportDefault: false
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\ProspectFirstActivityAtBulkDataProcessor
+    featureFlags: feature.api.enable_export_prospect_extended_fields
+  firstAssignedAt:
+    type: datetime
+    readOnly: true
+    preVersion5ExportDefault: false
+    featureFlags: feature.api.enable_export_prospect_extended_fields
+  firstName:
+    type: string
+  firstReferrerQuery:
+    type: string
+    readOnly: true
+    preVersion5ExportDefault: false
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\ProspectFirstReferrerBulkDataProcessor
+    featureFlags: feature.api.enable_export_prospect_extended_fields
+  firstReferrerType:
+    type: string
+    readOnly: true
+    preVersion5ExportDefault: false
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\ProspectFirstReferrerBulkDataProcessor
+    featureFlags: feature.api.enable_export_prospect_extended_fields
+  firstReferrerUrl:
+    type: string
+    readOnly: true
+    preVersion5ExportDefault: false
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\ProspectFirstReferrerBulkDataProcessor
+    featureFlags: feature.api.enable_export_prospect_extended_fields
+  grade:
+    type: string
+    readOnly: true
+    preVersion5ExportDefault: false
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\ProspectGradeBulkDataProcessor
+    featureFlags: feature.api.enable_export_prospect_extended_fields
+  industry:
+    type: string
+  isDeleted:
+    type: boolean
+    preVersion5Field: is_archived
+    doctrineField: is_archived
+    readOnly: true
+  isDoNotCall:
+    type: boolean
+  isDoNotEmail:
+    type: boolean
+  isEmailHardBounced:
+    type: boolean
+    readOnly: true
+    preVersion5ExportDefault: false
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\ProspectEmailBouncedBulkDataProcessor
+    featureFlags: feature.api.enable_export_prospect_extended_fields
+  isReviewed:
+    type: boolean
+  isStarred:
+    type: boolean
+  jobTitle:
+    type: string
+  lastActivityAt:
+    type: datetime
+    sortable: true # ix_account_id_last_activity_at_is_archived(account_id, last_activity_at, is_archived)
+    filterable: true
+    readOnly: true
+  lastName:
+    type: string
+  mediumParameter:
+    type: string
+    readOnly: true
+    preVersion5ExportDefault: false
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\ProspectGoogleAnalyticsParamsBulkDataProcessor
+    featureFlags: feature.api.enable_export_prospect_extended_fields
+  notes:
+    type: string
+    preVersion5ExportDefault: false
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\ProspectNotesBulkDataProcessor
+    featureFlags: feature.api.enable_export_prospect_extended_fields
+  optedOut:
+    type: boolean
+  password:
+    type: string
+    readOnly: true # This field should not be exposed in v6 and forward.
+  phone:
+    type: string
+  prospectAccountId:
+    type: integer
+  salesforceId: # createOnly field. On update, error will be returned.
+    type: string
+    preVersion5Field: salesforce_fid
+    doctrineField: salesforce_fid
+    filterable: true
+  salutation:
+    type: string
+  score:
+    type: integer
+  source:
+    type: string
+  sourceParameter:
+    type: string
+    readOnly: true
+    preVersion5ExportDefault: false
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\ProspectGoogleAnalyticsParamsBulkDataProcessor
+    featureFlags: feature.api.enable_export_prospect_extended_fields
+  state:
+    type: string
+  termParameter:
+    type: string
+    readOnly: true
+    preVersion5ExportDefault: false
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\ProspectGoogleAnalyticsParamsBulkDataProcessor
+    featureFlags: feature.api.enable_export_prospect_extended_fields
+  territory:
+    type: string
+  updatedAt:
+    type: datetime
+    sortable: true # ix_account_id_updated_at_is_archived(account_id, updated_at, is_archived)
+    filterable: true
+    readOnly: true
+  updatedById:
+    type: integer
+    doctrineField: updated_by
+    readOnly: true
+  userId:
+    type: integer
+    filterable: true
+    nullable: true
+  website:
+    type: string
+  yearsInBusiness:
+    type: string
+  zip:
+    type: string
+  assignedToId:
+    type: integer
+    doctrineField: user_id
+    preVersion5ExportDefault: false
+    filterable: true
+    readOnly: true
+  profileId:
+    type: integer
+    preVersion5ExportDefault: false
+  salesforceUrl:
+    type: string
+    preVersion5ExportDefault: false
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\ProspectSalesforceUrlBulkDataProcessor
+    readOnly: true
+  lifecycleStageId:
+    type: integer
+    preVersion5ExportDefault: false
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\ProspectLifecycleStageIdBulkDataProcessor
+    readOnly: true
+  recentInteraction:
+    type: string
+    derived: true
+    preVersion5ExportDefault: false
+    readOnly: true
+  doNotSell:
+    type: boolean
+    readOnly: true
+    preVersion5ExportDefault: false
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\DoNotSellBulkDataProcessor
+    featureFlags: feature.tac_238_gpc_signal
+relationships:
+  assignedTo:
+    doctrineName: piUser
+    referenceTo:
+      object: User
+      key: id
+  campaign:
+    doctrineName: piCampaign
+    referenceTo:
+      object: Campaign
+      key: id
+  prospectAccount:
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\ProspectAccountBulkDataProcessor
+    referenceTo:
+      object: ProspectAccount
+      key: id
+  createdBy:
+    doctrineName: piCreated
+    referenceTo:
+      object: User
+      key: id
+  updatedBy:
+    doctrineName: piUpdated
+    referenceTo:
+      object: User
+      key: id

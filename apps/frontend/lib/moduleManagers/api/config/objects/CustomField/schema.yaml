@@ -1,0 +1,87 @@
+doctrineTable: piProspectFieldCustomTable
+productTag: Custom Objects
+isArchivable: true
+operations:
+  read:
+    abilities: PROSPECTS_PROSPECTS_CONFIGUREFIELDS
+  query:
+    abilities: PROSPECTS_PROSPECTS_CONFIGUREFIELDS
+  export:
+    abilities: PROSPECTS_PROSPECTS_CONFIGUREFIELDS
+    featureFlags: feature.api.version_5_export_all
+  delete:
+    abilities: PROSPECTS_PROSPECTS_CONFIGUREFIELDS
+  create:
+    abilities: PROSPECTS_PROSPECTS_CONFIGUREFIELDS
+  update:
+    abilities: PROSPECTS_PROSPECTS_CONFIGUREFIELDS
+doctrineQueryModifier: \Api\Config\Objects\CustomField\CustomFieldDoctrineQueryModifier
+doctrineDeleteModifier: \Api\Config\Objects\CustomField\CustomFieldDoctrineDeleteModifier
+doctrineCreateModifier: \Api\Config\Objects\CustomField\CustomFieldDoctrineCreateModifier
+doctrineUpdateModifier: \Api\Config\Objects\CustomField\CustomFieldDoctrineUpdateModifier
+fields:
+  id:
+    type: integer
+    readOnly: true
+    sortable: true
+    filterable: true
+  name:
+    type: string
+    required: true
+  fieldId:
+    type: string
+    required: true
+  apiFieldId:
+    type: string
+    derived: true
+    readOnly: true
+  type:
+    type: enum
+    required: true
+    enumFieldClass: \Api\Config\Objects\CustomField\CustomFieldTypeEnum
+  isRecordMultipleResponses:
+    type: boolean
+  salesforceId:
+    type: string
+    doctrineField: crm_field_fid
+  isUseValues:
+    type: boolean
+  isAnalyticsSynced:
+    type: boolean
+    readOnly: true
+    featureFlags: feature.mia_230_selective_sync
+  createdAt:
+    type: datetime
+    readOnly: true
+    sortable: true
+    filterable: true
+  updatedAt:
+    type: datetime
+    readOnly: true
+    sortable: true
+    filterable: true
+  createdById:
+    type: integer
+    doctrineField: created_by
+    readOnly: true
+  updatedById:
+    type: integer
+    doctrineField: updated_by
+    readOnly: true
+  valuesPrefill:
+    type: enum
+    enumFieldClass: \Api\Config\Objects\CustomField\CustomFieldValuesPrefillEnum
+    writeOnly: true
+  isRequired:
+    type: boolean
+relationships:
+  createdBy:
+    doctrineName: piCreated
+    referenceTo:
+      object: User
+      key: id
+  updatedBy:
+    doctrineName: piUpdated
+    referenceTo:
+      object: User
+      key: id

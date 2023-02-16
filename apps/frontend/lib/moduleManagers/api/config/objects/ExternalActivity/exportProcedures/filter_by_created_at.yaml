@@ -1,0 +1,9 @@
+class: Api\Config\Objects\ExternalActivity\ExportProcedures\ExternalActivityFilterByCreatedAtProcedure
+arguments:
+  created_after:
+    type: datetime
+    required: true
+  created_before:
+    type: datetime
+    required: false
+

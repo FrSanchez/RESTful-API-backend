@@ -1,0 +1,11 @@
+class: Api\Config\Objects\Prospect\ExportProcedures\ProspectFilterByCreatedAtProcedure
+arguments:
+  created_after:
+    type: datetime
+    required: true
+  created_before:
+    type: datetime
+    required: false
+  deleted:
+    type: boolean-or-string
+    required: false

@@ -1,0 +1,96 @@
+isArchivable: false
+productTag: Prospect Import
+operations:
+  read:
+    abilities: PROSPECTS_PROSPECTS_IMPORT
+  query:
+    abilities: PROSPECTS_PROSPECTS_IMPORT
+  create:
+    abilities: PROSPECTS_PROSPECTS_IMPORT
+  update:
+    abilities: PROSPECTS_PROSPECTS_IMPORT
+doctrineQueryModifier: \Api\Config\Objects\Import\ImportDoctrineQueryModifier
+doctrineCreateModifier: \Api\Config\Objects\Import\ImportDoctrineCreateModifier
+doctrineUpdateModifier: \Api\Config\Objects\Import\ImportDoctrineUpdateModifier
+customUrlPath: /api/{version}/imports
+fields:
+  id:
+    type: integer
+    readOnly: true
+    filterable: true
+    sortable: true
+  status:
+    type: enum
+    filterable: true
+    enumFieldClass: \Api\Config\Objects\Import\ImportStatusTypeEnum
+    preVersion5Field: state
+  isExpired:
+    type: boolean
+    readOnly: true
+    filterable: true
+  createdCount:
+    type: integer
+    doctrineField: num_created
+    readOnly: true
+  updatedCount:
+    type: integer
+    doctrineField: num_updated
+    readOnly: true
+  errorCount:
+    type: integer
+    doctrineField: num_failed
+    readOnly: true
+  batchesRef:
+    type: string
+    readOnly: true
+    derived: true
+  errorsRef:
+    type: string
+    readOnly: true
+    derived: true
+  createdAt:
+    type: datetime
+    readOnly: true
+    filterable: true
+    sortable: true
+  updatedAt:
+    type: datetime
+    readOnly: true
+    filterable: true
+    sortable: true
+  createdById:
+    type: integer
+    doctrineField: user_id
+    readOnly: true
+  operation:
+    type: enum
+    enumFieldClass: \Api\Config\Objects\Import\ImportOperationTypeEnum
+    writeOnly: true
+    required: true
+  object:
+    type: enum
+    enumFieldClass: \Api\Config\Objects\Import\ImportObjectTypeEnum
+    writeOnly: true
+    required: true
+  restoreDeleted:
+    type: boolean
+    writeOnly: true
+  fields:
+    type: map
+    items: ImportFieldRepresentation
+    writeOnly: true
+  origin:
+    type: enum
+    readOnly: true
+    enumFieldClass: \Api\Config\Objects\Import\ImportOriginTypeEnum
+    filterable: true
+  createOnNoMatch:
+    type: boolean
+    writeOnly: true
+    required: false
+relationships:
+  createdBy:
+    doctrineName: piUser
+    referenceTo:
+      object: User
+      key: id

@@ -1,0 +1,107 @@
+doctrineTable: piFilexTable
+binaryAttachment: true
+productTag: File Marketing Asset
+isArchivable: true
+operations:
+  create:
+    abilities: MARKETING_CONTENT_FILES_CREATE
+  read:
+    abilities: MARKETING_CONTENT_FILES_VIEW
+  query:
+    abilities: MARKETING_CONTENT_FILES_VIEW
+  update:
+    abilities: MARKETING_CONTENT_FILES_CREATE
+  delete:
+    abilities: MARKETING_CONTENT_FILES_DELETE
+  export:
+    abilities: MARKETING_CONTENT_FILES_VIEW
+    featureFlags: feature.api.version_5_export_all
+doctrineCreateModifier: \Api\Config\Objects\File\FileDoctrineCreateModifier
+doctrineDeleteModifier: \Api\Config\Objects\File\FileDoctrineDeleteModifier
+doctrineQueryModifier: \Api\Config\Objects\File\FileDoctrineQueryModifier
+doctrineUpdateModifier: \Api\Config\Objects\File\FileDoctrineUpdateModifier
+fields:
+  id:
+    type: integer
+    readOnly: true
+    sortable: true
+    filterable: true
+  name:
+    type: string
+  url:
+    type: string
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\TrackerAndTrackerDomainBulkDataProcessor
+    readOnly: true
+  size:
+    type: integer
+    readOnly: true
+  bitlyIsPersonalized:
+    type: boolean
+    derived: true
+    readOnly: true
+  bitlyShortUrl:
+    type: string
+    derived: true
+    readOnly: true
+  vanityUrl:
+    type: string
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\TrackerAndTrackerDomainBulkDataProcessor
+    readOnly: true
+  vanityUrlPath:
+    type: string
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\TrackerAndTrackerDomainBulkDataProcessor
+  createdById:
+    type: integer
+    doctrineField: created_by
+    readOnly: true
+  updatedById:
+    type: integer
+    doctrineField: updated_by
+    readOnly: true
+  createdAt:
+    type: datetime
+    readOnly: true
+  updatedAt:
+    type: datetime
+    readOnly: true
+  salesforceId:
+    type: string
+    doctrineField: salesforce_fid
+    preVersion5Field: salesforce_fid
+    readOnly: true
+  campaignId:
+    type: integer
+    nullable: true
+  trackerDomainId:
+    type: integer
+  isTracked:
+    type: boolean
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\TrackerAndTrackerDomainBulkDataProcessor
+    readOnly: true
+  folderId:
+    type: integer
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\FolderBulkDataProcessor
+relationships:
+  createdBy:
+    doctrineName: piCreated
+    referenceTo:
+      object: User
+      key: id
+  updatedBy:
+    doctrineName: piUpdated
+    referenceTo:
+      object: User
+      key: id
+  trackerDomain:
+    referenceTo:
+      object: TrackerDomain
+      key: id
+  campaign:
+    referenceTo:
+      object: Campaign
+      key: id
+  folder:
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\FolderBulkDataProcessor
+    referenceTo:
+      object: Folder
+      key: id

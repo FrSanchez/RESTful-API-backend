@@ -1,0 +1,92 @@
+productTag: Email Editing
+isArchivable: true
+operations:
+  read:
+    abilities:
+      $allOf:
+        - MARKETING_EMAILS_EMAILS_VIEW
+        - MARKETING_EMAILS_EMAILS_VIEWREPORT
+  query:
+    abilities:
+      $allOf:
+        - MARKETING_EMAILS_EMAILS_VIEW
+        - MARKETING_EMAILS_EMAILS_VIEWREPORT
+  export:
+    abilities:
+      $allOf:
+        - MARKETING_EMAILS_EMAILS_VIEW
+doctrineQueryModifier: \Api\Config\Objects\Email\EmailDoctrineQueryModifier
+fields:
+  id:
+    type: integer
+    sortable: true
+    filterable: true
+    readOnly: true
+  name:
+    type: string
+  subject:
+    type: string
+    derived: true
+  htmlMessage:
+    type: string
+    derived: true
+    queryable: false
+  textMessage:
+    type: string
+    derived: true
+    queryable: false
+  userId:
+    type: integer
+  campaignId:
+    type: integer
+  listId:
+    type: integer
+    doctrineField: listx_id
+  clientType:
+    type: string
+    readOnly: true
+    derived: true
+  sentAt:
+    type: datetime
+    sortable: true
+    filterable: true
+    readOnly: true
+  prospectId:
+    type: integer
+    sortable: true
+    filterable: true
+  listEmailId:
+    type: integer
+    filterable: true
+  createdById:
+    type: integer
+    doctrineField: created_by
+    readOnly: true
+relationships:
+  createdBy:
+    doctrineName: piCreated
+    referenceTo:
+      object: User
+      key: id
+  user:
+    referenceTo:
+      object: User
+      key: id
+  campaign:
+    referenceTo:
+      object: Campaign
+      key: id
+  listEmail:
+    doctrineName: piListEmailActual
+    referenceTo:
+      object: ListEmail
+      key: id
+  list:
+    doctrineName: piListx
+    referenceTo:
+      object: List
+      key: id
+  prospect:
+    referenceTo:
+      object: Prospect
+      key: id

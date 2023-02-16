@@ -1,0 +1,49 @@
+doctrineTable: piLifecycleStageLogTable
+productTag: EXTERNAL_ACTIVITIES
+isArchivable: false
+operations:
+  read:
+    abilities: PROSPECTS_LIFECYCLE_VIEWREPORT
+  query:
+    abilities: PROSPECTS_LIFECYCLE_VIEWREPORT
+  export:
+    abilities: PROSPECTS_LIFECYCLE_VIEWREPORT
+    featureFlags: feature.api.version_5_export_all
+fields:
+  id:
+    type: integer
+    sortable: true
+    filterable: true
+    readOnly: true
+  prospectId:
+    type: integer
+  previousStageId:
+    type: integer
+    doctrineField: previous_lifecycle_stage_id
+  nextStageId:
+    type: integer
+    doctrineField: next_lifecycle_stage_id
+  secondsElapsed:
+    type: integer
+    doctrineField: seconds_in_previous_stage
+  createdAt:
+    type: datetime
+    sortable: true
+    filterable: true
+    readOnly: true
+relationships:
+  prospect:
+    doctrineName: piProspect
+    referenceTo:
+      object: Prospect
+      key: id
+  previousStage:
+    doctrineName: piPreviousLifecycleStage
+    referenceTo:
+      object: LifecycleStage
+      key: id
+  nextStage:
+    doctrineName: piNextLifecycleStage
+    referenceTo:
+      object: LifecycleStage
+      key: id

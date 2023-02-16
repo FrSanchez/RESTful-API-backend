@@ -1,0 +1,16 @@
+class: Api\Config\Objects\VisitorActivity\ExportProcedures\VisitorActivityFilterByUpdatedAtProcedure
+arguments:
+  updated_after:
+    type: datetime
+    required: true
+  updated_before:
+    type: datetime
+    required: false
+  type:
+    type: array
+    items: integer
+    required: false
+    minItems: 1
+  prospect_only:
+    type: boolean
+    required: false

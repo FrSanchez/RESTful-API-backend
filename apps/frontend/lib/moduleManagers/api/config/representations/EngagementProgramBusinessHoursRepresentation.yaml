@@ -1,0 +1,8 @@
+properties:
+  days:
+    type: array
+    items: string
+  startTime:
+    type: time
+  endTime:
+    type: time

@@ -1,0 +1,146 @@
+productTag: Forms
+isArchivable: true
+operations:
+  read:
+    abilities:
+      $allOf:
+        - MARKETING_FORMS_FORMS_VIEW
+        - PROSPECTS_PROSPECTS_VIEW
+  query:
+    abilities:
+      $allOf:
+        - MARKETING_FORMS_FORMS_VIEW
+        - PROSPECTS_PROSPECTS_VIEW
+  export:
+    abilities:
+      $allOf:
+        - MARKETING_FORMS_FORMS_VIEW
+        - PROSPECTS_PROSPECTS_VIEW
+    featureFlags: feature.api.version_5_export_all
+doctrineQueryModifier: \Api\Config\Objects\Form\FormDoctrineQueryModifier
+fields:
+  id:
+    type: integer
+    readOnly: true
+    filterable: true
+    sortable: true
+  name:
+    type: string
+    required: true
+  campaignId:
+    type: integer
+    required: true
+  embedCode:
+    type: string
+    readOnly: true
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\TrackerAndTrackerDomainBulkDataProcessor
+  salesforceId:
+    type: string
+    doctrineField: salesforce_fid
+    preVersion5Field: salesforce_fid
+    readOnly: true
+  layoutTemplateId:
+    type: integer
+    required: true
+    doctrineField: layout_template_id
+  submitButtonText:
+    type: string
+  redirectLocation:
+    type: string
+  thankYouContent:
+    type: string
+  thankYouCode:
+    type: string
+  beforeFormContent:
+    type: string
+  afterFormContent:
+    type: string
+  fontSize:
+    derived: true
+    type: enum
+    enumFieldClass: \Api\Config\Objects\Form\FormFontSizeEnum
+  fontFamily:
+    derived: true
+    type: enum
+    enumFieldClass: \Api\Config\Objects\Form\FormFontFamilyEnum
+  fontColor:
+    type: string
+    derived: true
+  labelAlignment:
+    derived: true
+    type: enum
+    enumFieldClass: \Api\Config\Objects\Form\FormLabelAlignmentEnum
+  radioAlignment:
+    derived: true
+    type: enum
+    enumFieldClass: \Api\Config\Objects\Form\FormRadioAlignmentEnum
+  checkboxAlignment:
+    derived: true
+    type: enum
+    enumFieldClass: \Api\Config\Objects\Form\FormCheckboxAlignmentEnum
+  requiredCharacter:
+    derived: true
+    type: enum
+    enumFieldClass: \Api\Config\Objects\Form\FormRequiredCharacterEnum
+  showNotProspect:
+    type: boolean
+  isUseRedirectLocation:
+    type: boolean
+  isAlwaysDisplay:
+    type: boolean
+  isCaptchaEnabled:
+    type: boolean
+  isCookieless:
+    type: boolean
+  isDeleted:
+    type: boolean
+    readOnly: true
+    doctrineField: is_archived
+    preVersion5Field: is_archived
+  createdById:
+    type: integer
+    doctrineField: created_by
+    readOnly: true
+  updatedById:
+    type: integer
+    doctrineField: updated_by
+    readOnly: true
+  createdAt:
+    type: datetime
+    readOnly: true
+  updatedAt:
+    type: datetime
+    readOnly: true
+  trackerDomainId:
+    type: integer
+  folderId:
+    type: integer
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\FolderBulkDataProcessor
+relationships:
+  createdBy:
+    doctrineName: piCreated
+    referenceTo:
+      object: User
+      key: id
+  updatedBy:
+    doctrineName: piUpdated
+    referenceTo:
+      object: User
+      key: id
+  trackerDomain:
+    referenceTo:
+      object: TrackerDomain
+      key: id
+  campaign:
+    referenceTo:
+      object: Campaign
+      key: id
+  layoutTemplate:
+    referenceTo:
+      object: LayoutTemplate
+      key: id
+  folder:
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\FolderBulkDataProcessor
+    referenceTo:
+      object: Folder
+      key: id

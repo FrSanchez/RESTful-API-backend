@@ -1,0 +1,27 @@
+productTag: Dynamic Content
+isArchivable: false
+operations:
+  read:
+    abilities: MARKETING_CONTENT_DYNAMICCONTENT_VIEW
+  query:
+    abilities: MARKETING_CONTENT_DYNAMICCONTENT_VIEW
+doctrineQueryModifier: \Api\Config\Objects\DynamicContentVariation\DynamicContentVariationFieldDoctrineQueryModifier
+fields:
+  id:
+    type: integer
+    readOnly: true
+    sortable: true
+    filterable: true
+  dynamicContentId:
+    type: integer
+    filterable: true
+  comparison:
+    type: string
+    derived: true
+  content:
+    type: string
+relationships:
+  dynamicContent:
+    referenceTo:
+      object: DynamicContent
+      key: id

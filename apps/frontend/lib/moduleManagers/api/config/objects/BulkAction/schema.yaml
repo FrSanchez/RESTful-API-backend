@@ -1,0 +1,120 @@
+productTag: Prospect
+isArchivable: false
+doctrineTable: piApiBulkActionTable
+doctrineQueryModifier: \Api\Config\Objects\BulkAction\BulkActionDoctrineQueryModifier
+doctrineCreateModifier: \Api\Config\Objects\BulkAction\BulkActionDoctrineCreateModifier
+doctrineUpdateModifier: \Api\Config\Objects\BulkAction\BulkActionDoctrineUpdateModifier
+customUrlPath: /api/{version}/bulk-actions
+operations:
+  create:
+    abilities:
+      # The idea is to start adding permission here as we introduce additional object and action with
+      # further check on the doctrine modifier for the specific object and action pair.
+      $anyOf:
+        - ADMIN_BATCH_ACTIONS_EDIT
+        - PROSPECTS_PROSPECTS_DELETE
+    featureFlags: feature.prospect.bulk_actions_prospect_delete_api
+  read:
+    abilities:
+      $anyOf:
+        - ADMIN_BATCH_ACTIONS_VIEW
+        - PROSPECTS_PROSPECTS_DELETE
+    featureFlags: feature.prospect.bulk_actions_prospect_delete_api
+  query:
+    abilities:
+      $anyOf:
+        - ADMIN_BATCH_ACTIONS_VIEW
+        - PROSPECTS_PROSPECTS_DELETE
+    featureFlags: feature.prospect.bulk_actions_prospect_delete_api
+  update:
+    abilities:
+      $anyOf:
+        - ADMIN_BATCH_ACTIONS_EDIT
+        - PROSPECTS_PROSPECTS_DELETE
+    featureFlags: feature.prospect.bulk_actions_prospect_delete_api
+fields:
+  id:
+    type: integer
+    sortable: true
+    filterable: true
+    readOnly: true
+  object:
+    type: enum
+    enumFieldClass: \Api\Config\Objects\BulkAction\ObjectFieldEnum
+    filterable: true
+    required: true
+  bulkAction:
+    type: enum
+    enumFieldClass: \Api\Config\Objects\BulkAction\ActionFieldEnum
+    doctrineField: action
+    filterable: true
+    required: true
+  status:
+    type: enum
+    enumFieldClass: \Api\Config\Objects\BulkAction\StatusFieldEnum
+    filterable: true
+    required: true
+  origin:
+    type: enum
+    enumFieldClass: \Api\Config\Objects\BulkAction\OriginTypeEnum
+    filterable: true
+    readOnly: true
+  count:
+    type: integer
+    doctrineField: num_items
+    readOnly: true
+  percentComplete:
+    type: integer
+    readOnly: true
+    queryable: false
+    derived: true
+  createdAt:
+    type: datetime
+    sortable: true
+    filterable: true
+    readOnly: true
+  updatedAt:
+    type: datetime
+    sortable: true
+    filterable: true
+    readOnly: true
+  createdById:
+    type: integer
+    doctrineField: created_by
+    readOnly: true
+  updatedById:
+    type: integer
+    doctrineField: updated_by
+    readOnly: true
+  errorCount:
+    type: integer
+    readOnly: true
+  errorsRef:
+    type: string
+    readOnly: true
+    derived: true
+    queryable: false
+  fileName:
+    type: string
+    readOnly: true
+    derived: true # store it in the parameters
+  sendSystemEmail:
+    type: boolean
+    writeOnly: true
+    derived: true # store it in the parameters
+  processedCount:
+    type: integer
+    readOnly: true
+    derived: true # stored in the parameters
+
+relationships:
+  createdBy:
+    doctrineName: piCreated
+    referenceTo:
+      object: User
+      key: id
+  updatedBy:
+    doctrineName: piUpdated
+    referenceTo:
+      object: User
+      key: id

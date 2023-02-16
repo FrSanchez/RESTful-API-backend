@@ -1,0 +1,86 @@
+productTag: Visitor Audit Framework
+isArchivable: true
+operations:
+  read:
+    abilities: PROSPECTS_VISITORS_VIEW
+  query:
+    abilities: PROSPECTS_VISITORS_VIEW
+  export:
+    abilities:
+      $allOf:
+        - PROSPECTS_VISITORS_VIEW
+fields:
+  id:
+    type: integer
+    sortable: true
+    readOnly: true
+    filterable: true
+  campaignId:
+    type: integer
+    readOnly: true
+  campaignParameter:
+    type: string
+    readOnly: true
+  contentParameter:
+    type: string
+    readOnly: true
+  hostname:
+    type: string
+    readOnly: true
+  ipAddress:
+    type: string
+    readOnly: true
+  isDeleted:
+    type: boolean
+    doctrineField: is_archived
+    preVersion5Field: is_archived
+    readOnly: true
+  mediumParameter:
+    type: string
+    readOnly: true
+  pageViewCount:
+    type: integer
+    doctrineField: visitor_page_view_count
+    readOnly: true
+  prospectId:
+    type: integer
+    readOnly: true
+    filterable: true
+    sortable: true
+  sourceParameter:
+    type: string
+    readOnly: true
+  termParameter:
+    type: string
+    readOnly: true
+  createdAt:
+    type: datetime
+    readOnly: true
+    filterable: true
+    sortable: true
+  updatedAt:
+    type: datetime
+    readOnly: true
+    filterable: true
+    sortable: true
+  isIdentified:
+    type: boolean
+    readOnly: true
+    filterable: true
+  doNotSell:
+    type: boolean
+    readOnly: true
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\DoNotSellBulkDataProcessor
+    featureFlags: feature.tac_238_gpc_signal
+    preVersion5ExportDefault: false
+relationships:
+  prospect:
+    doctrineName: piProspect
+    referenceTo:
+      object: Prospect
+      key: id
+  campaign:
+    doctrineName: piCampaign
+    referenceTo:
+      object: Campaign
+      key: id

@@ -1,0 +1,11 @@
+properties:
+  extension:
+    type: string
+  type:
+    type: string
+  email:
+    type: string
+  value:
+    type: string
+  activityDate:
+    type: datetime

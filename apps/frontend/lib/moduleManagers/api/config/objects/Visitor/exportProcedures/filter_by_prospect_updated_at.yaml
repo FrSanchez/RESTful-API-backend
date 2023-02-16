@@ -1,0 +1,15 @@
+class: Api\Config\Objects\Visitor\ExportProcedures\VisitorFilterByProspectUpdatedAtProcedure
+featureFlags:
+  $allOf:
+    - feature.api.pardot_bulk_export_230
+arguments:
+  prospect_updated_after:
+    type: datetime
+    required: true
+  prospect_updated_before:
+    type: datetime
+    required: false
+  prospect_deleted:
+    # Defaults to false in code
+    type: boolean-or-string
+    required: false

@@ -1,0 +1,11 @@
+class: Api\Config\Objects\Prospect\ExportProcedures\ProspectFilterByUpdatedAtProcedure
+arguments:
+  updated_after:
+    type: datetime
+    required: true
+  updated_before:
+    type: datetime
+    required: false
+  deleted:
+    type: boolean-or-string
+    required: false

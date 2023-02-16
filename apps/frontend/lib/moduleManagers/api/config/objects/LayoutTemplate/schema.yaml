@@ -1,0 +1,76 @@
+doctrineTable: piLayoutTemplateTable
+productTag: Layout Templates
+isArchivable: true
+operations:
+  create:
+    abilities: MARKETING_LANDINGPAGES_LAYOUTTEMPLATES_CREATE
+  read:
+    abilities: MARKETING_LANDINGPAGES_LAYOUTTEMPLATES_VIEW
+  query:
+    abilities: MARKETING_LANDINGPAGES_LAYOUTTEMPLATES_VIEW
+  export:
+    abilities: MARKETING_LANDINGPAGES_LAYOUTTEMPLATES_VIEW
+    featureFlags: feature.api.version_5_export_all
+  update:
+    abilities: MARKETING_LANDINGPAGES_LAYOUTTEMPLATES_CREATE
+  delete:
+    abilities: MARKETING_LANDINGPAGES_LAYOUTTEMPLATES_DELETE
+doctrineCreateModifier: \Api\Config\Objects\LayoutTemplate\LayoutTemplateDoctrineCreateModifier
+doctrineUpdateModifier: \Api\Config\Objects\LayoutTemplate\LayoutTemplateDoctrineUpdateModifier
+fields:
+  id:
+    type: integer
+    readOnly: true
+    sortable: true
+    filterable: true
+  name:
+    type: string
+    required: true
+  layoutContent:
+    type: string
+    required: true
+  formContent:
+    type: string
+  siteSearchContent:
+    type: string
+    readOnly: true
+  isIncludeDefaultCss:
+    type: boolean
+  isDeleted:
+    type: boolean
+    readOnly: true
+    doctrineField: is_archived
+    preVersion5Field: is_archived
+  createdById:
+    type: integer
+    doctrineField: created_by
+    readOnly: true
+  updatedById:
+    type: integer
+    doctrineField: updated_by
+    readOnly: true
+  createdAt:
+    type: datetime
+    readOnly: true
+  updatedAt:
+    type: datetime
+    readOnly: true
+  folderId:
+    type: integer
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\FolderBulkDataProcessor
+relationships:
+  createdBy:
+    doctrineName: piCreated
+    referenceTo:
+      object: User
+      key: id
+  updatedBy:
+    doctrineName: piUpdated
+    referenceTo:
+      object: User
+      key: id
+  folder:
+    bulkDataProcessor: \Api\Config\BulkDataProcessors\FolderBulkDataProcessor
+    referenceTo:
+      object: Folder
+      key: id

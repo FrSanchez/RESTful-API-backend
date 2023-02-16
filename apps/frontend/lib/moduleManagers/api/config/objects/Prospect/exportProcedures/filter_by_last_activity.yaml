@@ -1,0 +1,14 @@
+class: Api\Config\Objects\Prospect\ExportProcedures\ProspectFilterByLastActivityProcedure
+featureFlags:
+  $allOf:
+    - feature.api_bulk_export_prospect_last_activity_after
+arguments:
+  last_activity_after:
+    type: datetime
+    required: true
+  last_activity_before:
+    type: datetime
+    required: false
+  deleted:
+    type: boolean-or-string
+    required: false

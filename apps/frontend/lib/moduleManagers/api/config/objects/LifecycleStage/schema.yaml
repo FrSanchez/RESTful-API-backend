@@ -1,0 +1,42 @@
+productTag: EXTERNAL_ACTIVITIES
+isArchivable: true
+operations:
+  read:
+    abilities: PROSPECTS_LIFECYCLE_VIEWREPORT
+  query:
+    abilities: PROSPECTS_LIFECYCLE_VIEWREPORT
+  export:
+    abilities: PROSPECTS_LIFECYCLE_VIEWREPORT
+    featureFlags: feature.api.version_5_export_all
+fields:
+  id:
+    type: integer
+    readOnly: true
+    sortable: true
+    filterable: true
+  matchType:
+    type: enum
+    enumFieldClass: \Api\Config\Objects\LifecycleStage\LifecycleStageMatchTypeEnum
+  isLocked:
+    type: boolean
+    readOnly: true
+  name:
+    type: string
+  position:
+    type: integer
+    doctrineField: sort_order
+  createdAt:
+    type: datetime
+    readOnly: true
+    sortable: true
+    filterable: true
+  updatedAt:
+    type: datetime
+    readOnly: true
+    sortable: true
+    filterable: true
+  isDeleted:
+    type: boolean
+    readOnly: true
+    doctrineField: is_archived
+    preVersion5Field: is_archived

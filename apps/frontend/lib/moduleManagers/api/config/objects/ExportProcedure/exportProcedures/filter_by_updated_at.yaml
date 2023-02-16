@@ -1,0 +1,13 @@
+class: Api\Config\Objects\Export\ExportProcedures\AllFilterByUpdatedAtProcedure
+featureFlags: feature.api.version_5_export_all
+generateProcedure: false
+arguments:
+  updatedAfter:
+    type: datetime
+    required: true
+  updatedBefore:
+    type: datetime
+    required: false
+  deleted:
+    type: boolean-or-string
+    required: false

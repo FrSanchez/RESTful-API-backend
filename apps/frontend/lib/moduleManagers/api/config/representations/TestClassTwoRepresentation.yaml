@@ -1,0 +1,9 @@
+# sample polymorphic representation
+suppressDescriptors: true
+properties:
+  dateArg:
+    type: datetime
+  intArg:
+    type: integer
+  boolArg:
+    type: boolean

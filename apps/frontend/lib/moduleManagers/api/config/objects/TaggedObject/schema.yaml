@@ -1,0 +1,36 @@
+productTag: M360 Ae Tags
+isArchivable: false
+doctrineTable: piTagObjectTable
+doctrineQueryModifier: \Api\Config\Objects\TaggedObject\TaggedObjectDoctrineQueryModifier
+operations:
+  export:
+    internalOnly: true
+    abilities:
+      $allOf:
+        - MARKETING_SEGMENTATION_TAGS_VIEW
+fields:
+  id:
+    type: integer
+    sortable: true
+    readOnly: true
+    filterable: true
+  targetObjectType:
+    type: enum
+    doctrineField: type
+    readOnly: true
+    enumFieldClass: \Api\Config\Objects\TaggedObject\TaggedObjectTargetObjectTypeEnum
+  targetId:
+    type: integer
+    doctrineField: fk_id
+    readOnly: true
+  tagName:
+    type: string
+    derived: true
+    readOnly: true
+  createdAt:
+    type: datetime
+    readOnly: true
+  createdById:
+    type: integer
+    doctrineField: created_by
+    readOnly: true

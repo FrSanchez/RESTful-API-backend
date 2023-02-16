@@ -1,0 +1,145 @@
+productTag: Prospect
+isArchivable: true
+operations:
+  read:
+    abilities:
+      $allOf:
+        - PROSPECTS_PROSPECTACCOUNTS_VIEW
+  query:
+    abilities:
+      $allOf:
+        - PROSPECTS_PROSPECTACCOUNTS_VIEW
+  export:
+    abilities:
+      $allOf:
+        - PROSPECTS_PROSPECTACCOUNTS_EXPORT
+fields:
+  id:
+    type: integer
+    sortable: true
+    readOnly: true
+    filterable: true
+  name:
+    type: string
+    required: true
+  salesforceId:
+    type: string
+    doctrineField: crm_fid
+    sortable: true # crm_lookup(account_id, crm_fid)
+  createdAt:
+    type: datetime
+    readOnly: true
+  updatedAt:
+    type: datetime
+    readOnly: true
+  createdById:
+    type: integer
+    doctrineField: created_by
+    readOnly: true
+  updatedById:
+    type: integer
+    doctrineField: updated_by
+    readOnly: true
+  assignedToId:
+    type: integer
+    doctrineField: user_id
+    nullable: true
+  annualRevenue:
+    type: string
+    nullable: true
+  billingAddressOne:
+    type: string
+    nullable: true
+  billingAddressTwo:
+    type: string
+    nullable: true
+  billingCity:
+    type: string
+    nullable: true
+  billingCountry:
+    type: string
+    nullable: true
+  billingState:
+    type: string
+    nullable: true
+  billingZip:
+    type: string
+    nullable: true
+  description:
+    type: string
+    nullable: true
+  employees:
+    type: string
+    nullable: true
+  fax:
+    type: string
+    nullable: true
+  industry:
+    type: string
+    nullable: true
+  number:
+    type: string
+    nullable: true
+  ownership:
+    type: string
+    nullable: true
+  phone:
+    type: string
+    nullable: true
+  rating:
+    type: string
+    nullable: true
+  shippingAddressOne:
+    type: string
+    nullable: true
+  shippingAddressTwo:
+    type: string
+    nullable: true
+  shippingCity:
+    type: string
+    nullable: true
+  shippingCountry:
+    type: string
+    nullable: true
+  shippingState:
+    type: string
+    nullable: true
+  shippingZip:
+    type: string
+    nullable: true
+  sic:
+    type: string
+    nullable: true
+  site:
+    type: string
+    nullable: true
+  tickerSymbol:
+    type: string
+    nullable: true
+  type:
+    type: string
+    nullable: true
+  website:
+    type: string
+    nullable: true
+  isDeleted:
+    type: boolean
+    doctrineField: is_archived
+    preVersion5Field: is_archived
+    readOnly: true
+relationships:
+  createdBy:
+    doctrineName: piCreated
+    referenceTo:
+      object: User
+      key: id
+  updatedBy:
+    doctrineName: piUpdated
+    referenceTo:
+      object: User
+      key: id
+  assignedTo:
+    doctrineName: piUser
+    referenceTo:
+      object: User
+      key: id

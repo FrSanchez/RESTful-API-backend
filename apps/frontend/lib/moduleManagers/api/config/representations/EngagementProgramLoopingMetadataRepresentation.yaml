@@ -1,0 +1,5 @@
+properties:
+  minimumDurationInDays:
+    type: integer
+  maximumEntries:
+    type: integer
